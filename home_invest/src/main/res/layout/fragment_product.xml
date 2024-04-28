@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/default_4dp"
-                android:text="1"
+                tools:text="1"
                 app:layout_constraintBottom_toBottomOf="@+id/indicatorDp"
                 app:layout_constraintEnd_toStartOf="@+id/indicatorDp"
                 app:layout_constraintTop_toTopOf="@+id/indicatorDp" />
@@ -52,17 +52,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_24dp"
-                app:etProgress="10"
+                app:etProgress="20"
                 app:layout_constraintEnd_toEndOf="@+id/circularProgressBar"
                 app:layout_constraintStart_toStartOf="@+id/circularProgressBar"
                 app:layout_constraintTop_toBottomOf="@+id/circularProgressBar" />
 
             <TextView
-                android:id="@+id/lastePageTv"
+                android:id="@+id/lastPageTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_4dp"
-                android:text="5"
+                tools:text="5"
                 app:layout_constraintBottom_toBottomOf="@+id/indicatorDp"
                 app:layout_constraintStart_toEndOf="@+id/indicatorDp"
                 app:layout_constraintTop_toTopOf="@+id/indicatorDp" />

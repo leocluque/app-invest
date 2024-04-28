@@ -8,6 +8,7 @@
     <string name="wallets_title">Carteiras</string>
     <string name="balance">R$ %s</string>
     <string name="go_to_products">Ir para Produtos</string>
+    <string name="page_initial">1</string>
 
     <!-- Bottom Navigation -->
     <string name="bottom_navigation_home">Home</string>

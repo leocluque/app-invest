@@ -42,9 +42,12 @@ class ProductFragment : Fragment() {
         setViewPager()
         setView()
         setListeners()
+        tintBackButton()
     }
 
     private fun setView() {
+        binding?.initialPageTv?.text = getString(R.string.page_initial)
+        binding?.lastPageTv?.text = fragments.size.toString()
         binding?.circularProgressBar?.configureComponent(
             subtitle = "100%",
             value = getString(R.string.balance, "160.000,00")
@@ -91,38 +94,46 @@ class ProductFragment : Fragment() {
             override fun onPageSelected(position: Int) {
                 currentPage = position
                 if (position == 0) {
-                    context?.let { context ->
-                        var drawable = AppCompatResources.getDrawable(
-                            context,
-                            R.drawable.arrow_left
-                        )
-                        drawable = drawable?.let { DrawableCompat.wrap(it) }
-                        drawable?.let {
-                            DrawableCompat.setTint(
-                                it,
-                                ContextCompat.getColor(context, R.color.gray)
-                            )
-                        }
-                        binding?.backIv?.setImageDrawable(drawable)
-                    }
+                    tintBackButton()
                 } else {
-                    context?.let { context ->
-                        var drawable = AppCompatResources.getDrawable(
-                            context,
-                            R.drawable.arrow_left
-                        )
-                        drawable = drawable?.let { DrawableCompat.wrap(it) }
-                        drawable?.let {
-                            DrawableCompat.setTint(
-                                it,
-                                ContextCompat.getColor(context, R.color.black)
-                            )
-                        }
-                        binding?.backIv?.setImageDrawable(drawable)
-                    }
+                    tintNextButton()
                 }
                 binding?.indicatorDp?.setProgress(position.plus(1) * 20)
             }
         })
+    }
+
+    private fun tintNextButton() {
+        context?.let { context ->
+            var drawable = AppCompatResources.getDrawable(
+                context,
+                R.drawable.arrow_left
+            )
+            drawable = drawable?.let { DrawableCompat.wrap(it) }
+            drawable?.let {
+                DrawableCompat.setTint(
+                    it,
+                    ContextCompat.getColor(context, R.color.black)
+                )
+            }
+            binding?.backIv?.setImageDrawable(drawable)
+        }
+    }
+
+    private fun tintBackButton() {
+        context?.let { context ->
+            var drawable = AppCompatResources.getDrawable(
+                context,
+                R.drawable.arrow_left
+            )
+            drawable = drawable?.let { DrawableCompat.wrap(it) }
+            drawable?.let {
+                DrawableCompat.setTint(
+                    it,
+                    ContextCompat.getColor(context, R.color.gray)
+                )
+            }
+            binding?.backIv?.setImageDrawable(drawable)
+        }
     }
 }
