@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--DEFAULT TabBar-->
+    <declare-styleable name="DefaultTabBar">
+        <attr name="tabOne" format="string" />
+        <attr name="tabTwo" format="string" />
+    </declare-styleable>
+
+    <!--Indicator-->
+    <declare-styleable name="DefaultProgressIndicator">
+        <attr name="etProgress" format="integer" />
+    </declare-styleable>
+
+
+</resources>

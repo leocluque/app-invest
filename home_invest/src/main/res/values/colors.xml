@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="background_line">#E6E6F2</color>
+    <color name="color_transparent">#00000000</color>
+    <color name="gray">#B3B3B3</color>
+    <color name="blue">#5786B9</color>
+    <color name="green">#477E4E</color>
+    <color name="red">#7A124E</color>
+    <color name="background_indicator">#EBEBEB</color>
+    <color name="indicator_progress">#26221F</color>
+
+</resources>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:fillViewport="true"
+    tools:context=".ui.home.product.ProductFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false">
+
+            <com.example.home_invest.ui.components.CircularProgressBar
+                android:id="@+id/circularProgressBar"
+                android:layout_width="@dimen/default_250dp"
+                android:layout_height="@dimen/default_250dp"
+                android:layout_marginTop="@dimen/default_42dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/totalProductsTitleTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_42dp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/circularProgressBar"
+                app:layout_constraintStart_toStartOf="@+id/circularProgressBar"
+                app:layout_constraintTop_toTopOf="@+id/circularProgressBar"
+                tools:text="100%" />
+
+            <TextView
+                android:id="@+id/totalProductsTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_8dp"
+                android:text="@string/all_products"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/circularProgressBar"
+                app:layout_constraintStart_toStartOf="@+id/circularProgressBar"
+                app:layout_constraintTop_toBottomOf="@+id/totalProductsTitleTv" />
+
+
+            <TextView
+                android:id="@+id/balanceTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/default_18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/circularProgressBar"
+                app:layout_constraintEnd_toEndOf="@+id/circularProgressBar"
+                app:layout_constraintStart_toStartOf="@+id/circularProgressBar"
+                app:layout_constraintTop_toBottomOf="@+id/totalProductsTv"
+                tools:text="R$ 160.000,00" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/default_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/indicatorDp"
+                app:srcCompat="@drawable/arrow_left" />
+
+            <TextView
+                android:id="@+id/initialPageTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_4dp"
+                android:text="1"
+                app:layout_constraintBottom_toBottomOf="@+id/indicatorDp"
+                app:layout_constraintEnd_toStartOf="@+id/indicatorDp"
+                app:layout_constraintTop_toTopOf="@+id/indicatorDp" />
+
+            <com.example.home_invest.ui.components.DefaultProgressIndicator
+                android:id="@+id/indicatorDp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_24dp"
+                app:etProgress="10"
+                app:layout_constraintEnd_toEndOf="@+id/circularProgressBar"
+                app:layout_constraintStart_toStartOf="@+id/circularProgressBar"
+                app:layout_constraintTop_toBottomOf="@+id/circularProgressBar" />
+
+            <TextView
+                android:id="@+id/lastePageTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_4dp"
+                android:text="5"
+                app:layout_constraintBottom_toBottomOf="@+id/indicatorDp"
+                app:layout_constraintStart_toEndOf="@+id/indicatorDp"
+                app:layout_constraintTop_toTopOf="@+id/indicatorDp" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:padding="@dimen/default_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/indicatorDp"
+                app:srcCompat="@drawable/arrow_right_next_step" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/productsVp"
+            android:layout_width="match_parent"
+            android:layout_height="1000dp"
+            android:layout_marginTop="@dimen/default_24dp"
+            android:clipToPadding="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/indicatorDp"
+            tools:background="@color/gray" />
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

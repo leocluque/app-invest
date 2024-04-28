@@ -1,0 +1,11 @@
+<resources>
+
+
+    <string name="total_balance">Saldo Total</string>
+    <string name="my_investments">Meus Investimentos</string>
+    <string name="all_products">Todos os Produtos</string>
+    <string name="product_title">Produtos</string>
+    <string name="wallets_title">Carteiras</string>
+    <string name="balance">R$ %s</string>
+    <string name="go_to_products">Ir para Produtos</string>
+</resources>
