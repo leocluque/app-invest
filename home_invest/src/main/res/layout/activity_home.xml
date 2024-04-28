@@ -3,102 +3,59 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/balanceTitleTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_32dp"
-        android:text="@string/total_balance"
-        android:textSize="@dimen/default_20sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/balanceValueTv"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/infoIv"
-        android:layout_width="@dimen/default_24dp"
-        android:layout_height="@dimen/default_24dp"
-        android:layout_marginEnd="@dimen/default_16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/balanceTitleTv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/balanceTitleTv"
-        app:srcCompat="@drawable/circled_info" />
-
-    <TextView
-        android:id="@+id/balanceValueTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/default_16dp"
-        android:layout_marginTop="@dimen/default_4dp"
-        android:textColor="@color/black"
-        android:textSize="@dimen/default_18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/balanceTitleTv"
-        tools:text="R$ 160.000,00" />
+    android:layout_height="match_parent"
+    android:id="@+id/homeCl">
 
 
-    <TextView
-        android:id="@+id/myInvestmentsTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_32dp"
-        android:text="@string/my_investments"
-        android:textSize="@dimen/default_16sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/balanceValueTv"
-        app:layout_constraintTop_toBottomOf="@+id/balanceValueTv" />
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/stepsCl"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/default_16dp"
-        android:layout_marginTop="@dimen/default_32dp"
-        android:layout_marginEnd="@dimen/default_16dp"
-        android:animateLayoutChanges="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myInvestmentsTv">
-
-        <View
-            android:id="@+id/view"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/default_2dp"
-            android:background="@color/background_line"
-            android:importantForAccessibility="no"
-            app:layout_constraintBottom_toBottomOf="@+id/stepsCl"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <com.example.home_invest.ui.components.TabBar
-            android:id="@+id/tabs"
-            android:layout_width="@dimen/default_200dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tabOne="@string/product_title"
-            app:tabTwo="@string/wallets_title" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/pagesVp"
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:nestedScrollingEnabled="true"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stepsCl" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/home_nav" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:orientation="vertical"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/background_line"/>
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_navigation"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_56dp"
+                android:elevation="@dimen/default_8dp"
+                app:itemIconTint="@color/selector_menu"
+                app:itemTextColor="@color/color_transparent"
+                app:labelVisibilityMode="unlabeled"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:menu="@menu/home_menu" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

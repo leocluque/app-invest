@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.home_invest.databinding.FragmentInvestmentsBinding
 import com.example.home_invest.ui.extensions.setup
+import com.example.home_invest.ui.home.extract.ExtractAdapter
 
 class InvestmentsFragment : Fragment() {
 
 
     private var binding: FragmentInvestmentsBinding? = null
-    private var adapter: InvestmentsAdapter? =  null
+    private var adapter: InvestmentsAdapter? = null
+    private var extractAdapter: ExtractAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,8 +26,10 @@ class InvestmentsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setAdapter()
         binding?.investimentsRv?.isNestedScrollingEnabled = false
+        binding?.extractRv?.isNestedScrollingEnabled = false
+        setAdapter()
+        setExtractAdapter()
     }
 
 
@@ -33,5 +37,11 @@ class InvestmentsFragment : Fragment() {
         adapter = context?.let { InvestmentsAdapter(it) }
         binding?.investimentsRv?.setup(adapter)
         adapter?.list = listOf("aaa", "", "", "")
+    }
+
+    private fun setExtractAdapter() {
+        extractAdapter = context?.let { ExtractAdapter(it) }
+        binding?.extractRv?.setup(extractAdapter)
+        extractAdapter?.list = listOf("", "", "")
     }
 }

@@ -9,8 +9,11 @@
     <dimen name="default_16dp">16dp</dimen>
     <dimen name="default_20dp">20dp</dimen>
     <dimen name="default_24dp">24dp</dimen>
+    <dimen name="default_28dp">28dp</dimen>
+    <dimen name="default_30dp">30dp</dimen>
     <dimen name="default_32dp">32dp</dimen>
     <dimen name="default_42dp">42dp</dimen>
+    <dimen name="default_56dp">56dp</dimen>
     <dimen name="default_70dp">70dp</dimen>
     <dimen name="default_100dp">100dp</dimen>
     <dimen name="default_200dp">200dp</dimen>

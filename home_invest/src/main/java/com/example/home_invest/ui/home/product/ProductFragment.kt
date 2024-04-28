@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager
 import com.example.home_invest.R
 import com.example.home_invest.databinding.FragmentProductBinding
 import com.example.home_invest.ui.components.CustomViewPager
+import com.example.home_invest.ui.components.ProgressItem
 import com.example.home_invest.ui.home.investments.InvestmentsFragment
 
 
@@ -33,9 +34,19 @@ class ProductFragment : Fragment() {
     }
 
     private fun setView() {
-        binding?.totalProductsTitleTv?.text = "100%"
-        binding?.balanceTv?.text = getString(R.string.balance, "160.000,00")
-
+        binding?.circularProgressBar?.configureComponent(
+            subtitle = "100%",
+            value = getString(R.string.balance, "160.000,00")
+        )
+        context?.let { context ->
+            binding?.circularProgressBar?.setList(
+                listOf(
+                    ProgressItem(60f, context.getColor(R.color.blue)),
+                    ProgressItem(20f, context.getColor(R.color.red)),
+                    ProgressItem(20f, context.getColor(R.color.green))
+                )
+            )
+        }
     }
 
     private fun setViewPager() {

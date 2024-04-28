@@ -1,6 +1,7 @@
 <resources>
 
 
+    <!--home -->
     <string name="total_balance">Saldo Total</string>
     <string name="my_investments">Meus Investimentos</string>
     <string name="all_products">Todos os Produtos</string>
@@ -8,4 +9,15 @@
     <string name="wallets_title">Carteiras</string>
     <string name="balance">R$ %s</string>
     <string name="go_to_products">Ir para Produtos</string>
+
+    <!-- Bottom Navigation -->
+    <string name="bottom_navigation_home">Home</string>
+    <string name="bottom_navigation_stock_alert">Stock Alert</string>
+
+    <!--Stock Alert -->
+    <string name="stock_alert_title">Estoque alerta</string>
+    <string name="stock_alert_value">R$ %s</string>
+    <string name="stock_alert_create">Criar Alerta</string>
+
+
 </resources>

@@ -14,17 +14,12 @@ class CircularProgressBar(context: Context, attrs: AttributeSet) : View(context,
 
     private val paint = Paint()
     private val progressItems = mutableListOf<ProgressItem>()
-    private val segmentSpacing = 5f // Adjust spacing as needed
+    private val segmentSpacing = 1f // Adjust spacing as needed
 
     init {
         paint.isAntiAlias = true
         paint.style = Paint.Style.STROKE
         paint.strokeWidth = 60f
-
-        // Initialize progress items (example)
-        progressItems.add(ProgressItem(60f, context.getColor(R.color.blue)))
-        progressItems.add(ProgressItem(20f, context.getColor(R.color.red)))
-        progressItems.add(ProgressItem(20f, context.getColor(R.color.green)))
     }
 
     @SuppressLint("DrawAllocation")
@@ -39,12 +34,23 @@ class CircularProgressBar(context: Context, attrs: AttributeSet) : View(context,
 
         for (item in progressItems) {
             val sweepAngle = item.percentage / 100f * 360f
-            val rectF = RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius)
+            val rectF =
+                RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius)
 
             paint.color = item.color
             canvas.drawArc(rectF, startAngle, sweepAngle, false, paint)
 
             startAngle += sweepAngle + segmentSpacing // Add spacing after each segment
+        }
+    }
+
+    fun setItems(list: List<ProgressItem>) {
+        if (list.isEmpty()) {
+            progressItems.add(ProgressItem(60f, context.getColor(R.color.blue)))
+            progressItems.add(ProgressItem(20f, context.getColor(R.color.red)))
+            progressItems.add(ProgressItem(20f, context.getColor(R.color.green)))
+        } else {
+            progressItems.addAll(list)
         }
     }
 }

@@ -11,23 +11,49 @@
         android:id="@+id/investimentsRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_investments"
+        android:layout_margin="@dimen/default_8dp"
         android:nestedScrollingEnabled="false"
         app:layout_constraintBottom_toTopOf="@+id/extract"
-        android:layout_margin="@dimen/default_8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="2"
+        tools:listitem="@layout/item_investments" />
 
+    <TextView
+        android:id="@+id/dateTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_16dp"
+        android:layout_marginTop="@dimen/default_16dp"
+        android:text="15 de janeiro"
+        android:textColor="@color/black"
+        android:textSize="@dimen/default_16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/balanceDayTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_16dp"
+        android:layout_marginTop="@dimen/default_4dp"
+        android:text="Saldo do dia R$2,00"
+        android:textSize="@dimen/default_16sp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/extract"
+        android:id="@+id/extractRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_8dp"
+        android:layout_marginTop="@dimen/default_16dp"
+        android:layout_marginEnd="@dimen/default_8dp"
+        android:layout_marginBottom="@dimen/default_16dp"
         android:nestedScrollingEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/investimentsRv" />
+        app:layout_constraintTop_toBottomOf="@+id/investimentsRv"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_extract" />
 
 </LinearLayout>

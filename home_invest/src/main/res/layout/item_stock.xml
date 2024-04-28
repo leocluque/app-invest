@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/default_8dp"
+    android:background="@drawable/bg_card_invest">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="@dimen/default_70dp"
+        android:layout_height="@dimen/default_24dp"
+        android:layout_marginStart="@dimen/default_16dp"
+        android:layout_marginTop="@dimen/default_16dp"
+        android:background="@drawable/bg_invest"
+        android:importantForAccessibility="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/percentageTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="60%"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/nameInvestTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_8dp"
+        android:layout_marginEnd="@dimen/default_8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        tools:text="Fundos de Investimentos" />
+
+
+    <TextView
+        android:id="@+id/balanceTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_16dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:text="Saldo Total" />
+
+
+    <TextView
+        android:id="@+id/balanceValueTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_16dp"
+        android:layout_marginEnd="@dimen/default_16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:text="R$ 96.000,00" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/goToProductsCl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_16dp"
+        android:layout_marginBottom="@dimen/default_16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/balanceTitleTv"
+        app:layout_constraintTop_toBottomOf="@+id/balanceTitleTv">
+
+        <TextView
+            android:id="@+id/goToProductsTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/go_to_products"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="@dimen/default_8dp"
+            android:layout_height="@dimen/default_8dp"
+            android:layout_marginStart="@dimen/default_8dp"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="@+id/goToProductsTv"
+            app:layout_constraintStart_toEndOf="@+id/goToProductsTv"
+            app:layout_constraintTop_toTopOf="@+id/goToProductsTv"
+            app:srcCompat="@drawable/arrow_right" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

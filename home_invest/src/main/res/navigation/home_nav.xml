@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.home_invest.ui.home.HomeFragment"
+        android:label="InvestmentsFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_investmentsFragment_to_stockAlertFragment"
+            app:destination="@id/stockAlertFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stockAlertFragment"
+        android:name="com.example.home_invest.ui.stock_alert.StockAlertFragment"
+        android:label="fragment_stock_alert"
+        tools:layout="@layout/fragment_stock_alert" />
+</navigation>
