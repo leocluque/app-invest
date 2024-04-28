@@ -1,6 +1,6 @@
 package com.example.network.data.create_service
 
-import com.example.network.local.PreferencesHelper
+import com.example.network.data.local.PreferencesHelper
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException

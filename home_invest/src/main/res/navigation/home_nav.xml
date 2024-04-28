@@ -14,9 +14,4 @@
             android:id="@+id/action_investmentsFragment_to_stockAlertFragment"
             app:destination="@id/stockAlertFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/stockAlertFragment"
-        android:name="com.example.home_invest.ui.stock_alert.StockAlertFragment"
-        android:label="fragment_stock_alert"
-        tools:layout="@layout/fragment_stock_alert" />
 </navigation>

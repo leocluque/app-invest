@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Intent
 import com.example.app_invest.ui.SplashActivity
 import com.example.network.data.create_service.UserUnauthorizedBus
-import com.example.network.local.PreferencesHelper
+import com.example.network.data.local.PreferencesHelper
 
 class BaseApplication : Application() {
 

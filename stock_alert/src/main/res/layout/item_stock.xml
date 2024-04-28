@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/default_8dp"
+    android:background="@drawable/bg_card_invest">
+
+    <ImageView
+        android:id="@+id/bgStatusIv"
+        android:layout_width="@dimen/default_70dp"
+        android:layout_height="@dimen/default_24dp"
+        android:layout_marginStart="@dimen/default_16dp"
+        android:layout_marginTop="@dimen/default_16dp"
+        android:background="@drawable/bg_stock_green"
+        android:importantForAccessibility="no"
+        app:layout_constraintStart_toEndOf="@+id/nameInvestTv"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/stockTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estoque"
+        android:padding="@dimen/default_8dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/bgStatusIv"
+        app:layout_constraintEnd_toEndOf="@+id/bgStatusIv"
+        app:layout_constraintStart_toStartOf="@+id/bgStatusIv"
+        app:layout_constraintTop_toTopOf="@+id/bgStatusIv" />
+
+    <ImageView
+        android:layout_width="@dimen/default_20dp"
+        android:layout_height="@dimen/default_20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bgStatusIv"
+        app:layout_constraintEnd_toEndOf="@+id/view6"
+        app:layout_constraintTop_toTopOf="@+id/bgStatusIv"
+        app:srcCompat="@drawable/ic_arrow_up" />
+
+    <TextView
+        android:id="@+id/nameInvestTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_16dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/bgStatusIv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bgStatusIv"
+        tools:text="Produto XPTO" />
+
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/default_1dp"
+        android:layout_marginTop="@dimen/default_16dp"
+        android:layout_marginEnd="@dimen/default_16dp"
+        android:background="@color/background_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/nameInvestTv"
+        app:layout_constraintTop_toBottomOf="@+id/nameInvestTv" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="@dimen/default_16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view6"
+        app:srcCompat="@drawable/ic_placeholder" />
+
+
+    <TextView
+        android:id="@+id/productValueTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_8dp"
+        android:text="@string/stock_alert_product_value_title"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/valueProductTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_4dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/productValueTitleTv"
+        app:layout_constraintTop_toBottomOf="@+id/productValueTitleTv"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="R$ 100,00" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/default_8dp"
+        android:background="@color/background_line"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/productValueTitleTv"
+        app:layout_constraintTop_toTopOf="@+id/productValueTitleTv"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <ImageView
+        android:id="@+id/stockDeleteIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_16dp"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/editStockIv"
+        app:layout_constraintStart_toEndOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:srcCompat="@drawable/ic_trash" />
+
+    <ImageView
+        android:id="@+id/editStockIv"
+        android:layout_width="@dimen/default_16dp"
+        android:layout_height="@dimen/default_16dp"
+        android:layout_marginEnd="@dimen/default_16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/stockDeleteIv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/stockDeleteIv"
+        app:layout_constraintTop_toTopOf="@+id/stockDeleteIv"
+        app:srcCompat="@drawable/ic_pen" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

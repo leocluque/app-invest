@@ -43,8 +43,7 @@ class HomeActivity : AppCompatActivity() {
 
                     R.id.stockAlertItem -> {
                         item.isChecked = true
-                        Navigation.findNavController(this@HomeActivity, mainHomeFrame)
-                            .navigate(R.id.stockAlertFragment)
+                        // todo
                     }
                 }
                 return@setOnItemSelectedListener false

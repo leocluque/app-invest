@@ -53,5 +53,8 @@ dependencies {
 //    testImplementation ("org.mockito:mockito-junit-jupiter:5.11.0")
     testImplementation ("org.robolectric:robolectric:4.12.1")
 
+    //netWork
+    implementation(project(":network"))
+
 
 }

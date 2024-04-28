@@ -14,11 +14,4 @@
     <string name="bottom_navigation_home">Home</string>
     <string name="bottom_navigation_stock_alert">Stock Alert</string>
 
-    <!--Stock Alert -->
-    <string name="stock_alert_title">Estoque alerta</string>
-    <string name="stock_alert_value">R$ %s</string>
-    <string name="stock_alert_create">Criar Alerta</string>
-    <string name="stock_alert_product_value_title">Valor do produto</string>
-
-
 </resources>
