@@ -8,6 +8,7 @@
     <color name="blue">#5786B9</color>
     <color name="green">#477E4E</color>
     <color name="red">#7A124E</color>
+    <color name="red_dark">#A60404</color>
     <color name="background_indicator">#EBEBEB</color>
     <color name="indicator_progress">#26221F</color>
     <color name="orange">#f28500</color>

@@ -8,12 +8,12 @@
     android:background="@drawable/bg_card_invest">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/bgStatusIv"
         android:layout_width="@dimen/default_70dp"
         android:layout_height="@dimen/default_24dp"
         android:layout_marginStart="@dimen/default_16dp"
         android:layout_marginTop="@dimen/default_16dp"
-        android:background="@drawable/bg_stock"
+        android:background="@drawable/bg_stock_green"
         android:importantForAccessibility="no"
         app:layout_constraintStart_toEndOf="@+id/nameInvestTv"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,17 +25,17 @@
         android:text="Estoque"
         android:padding="@dimen/default_8dp"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        app:layout_constraintBottom_toBottomOf="@+id/bgStatusIv"
+        app:layout_constraintEnd_toEndOf="@+id/bgStatusIv"
+        app:layout_constraintStart_toStartOf="@+id/bgStatusIv"
+        app:layout_constraintTop_toTopOf="@+id/bgStatusIv" />
 
     <ImageView
         android:layout_width="@dimen/default_20dp"
         android:layout_height="@dimen/default_20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintBottom_toBottomOf="@+id/bgStatusIv"
         app:layout_constraintEnd_toEndOf="@+id/view6"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/bgStatusIv"
         app:srcCompat="@drawable/ic_arrow_up" />
 
     <TextView
@@ -45,9 +45,9 @@
         android:layout_marginStart="@dimen/default_16dp"
         android:textColor="@color/black"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintBottom_toBottomOf="@+id/bgStatusIv"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/bgStatusIv"
         tools:text="Produto XPTO" />
 
 
@@ -121,8 +121,8 @@
 
     <ImageView
         android:id="@+id/editStockIv"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/default_16dp"
+        android:layout_height="@dimen/default_16dp"
         android:layout_marginEnd="@dimen/default_16dp"
         app:layout_constraintBottom_toBottomOf="@+id/stockDeleteIv"
         app:layout_constraintEnd_toEndOf="parent"
