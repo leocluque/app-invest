@@ -13,86 +13,121 @@
         android:layout_height="@dimen/default_24dp"
         android:layout_marginStart="@dimen/default_16dp"
         android:layout_marginTop="@dimen/default_16dp"
-        android:background="@drawable/bg_invest"
+        android:background="@drawable/bg_stock"
         android:importantForAccessibility="no"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nameInvestTv"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/percentageTv"
+        android:id="@+id/stockTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="60%"
+        android:text="Estoque"
+        android:padding="@dimen/default_8dp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
+    <ImageView
+        android:layout_width="@dimen/default_20dp"
+        android:layout_height="@dimen/default_20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="@+id/view6"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:srcCompat="@drawable/ic_arrow_up" />
+
     <TextView
         android:id="@+id/nameInvestTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/default_8dp"
-        android:layout_marginEnd="@dimen/default_8dp"
+        android:layout_marginStart="@dimen/default_16dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
-        tools:text="Fundos de Investimentos" />
+        tools:text="Produto XPTO" />
 
 
-    <TextView
-        android:id="@+id/balanceTitleTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_16dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        tools:text="Saldo Total" />
-
-
-    <TextView
-        android:id="@+id/balanceValueTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <View
+        android:id="@+id/view6"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/default_1dp"
         android:layout_marginTop="@dimen/default_16dp"
         android:layout_marginEnd="@dimen/default_16dp"
+        android:background="@color/background_line"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        tools:text="R$ 96.000,00" />
+        app:layout_constraintStart_toStartOf="@+id/nameInvestTv"
+        app:layout_constraintTop_toBottomOf="@+id/nameInvestTv" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/goToProductsCl"
-        android:layout_width="0dp"
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_16dp"
+        android:layout_marginStart="@dimen/default_16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="@dimen/default_16dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view6"
+        app:srcCompat="@drawable/ic_placeholder" />
+
+
+    <TextView
+        android:id="@+id/productValueTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_8dp"
+        android:text="@string/stock_alert_product_value_title"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/valueProductTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_4dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/productValueTitleTv"
+        app:layout_constraintTop_toBottomOf="@+id/productValueTitleTv"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="R$ 100,00" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/default_8dp"
+        android:background="@color/background_line"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/productValueTitleTv"
+        app:layout_constraintTop_toTopOf="@+id/productValueTitleTv"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <ImageView
+        android:id="@+id/stockDeleteIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_16dp"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/editStockIv"
+        app:layout_constraintStart_toEndOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:srcCompat="@drawable/ic_trash" />
+
+    <ImageView
+        android:id="@+id/editStockIv"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="@dimen/default_16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/stockDeleteIv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/balanceTitleTv"
-        app:layout_constraintTop_toBottomOf="@+id/balanceTitleTv">
-
-        <TextView
-            android:id="@+id/goToProductsTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/go_to_products"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:layout_width="@dimen/default_8dp"
-            android:layout_height="@dimen/default_8dp"
-            android:layout_marginStart="@dimen/default_8dp"
-            android:importantForAccessibility="no"
-            app:layout_constraintBottom_toBottomOf="@+id/goToProductsTv"
-            app:layout_constraintStart_toEndOf="@+id/goToProductsTv"
-            app:layout_constraintTop_toTopOf="@+id/goToProductsTv"
-            app:srcCompat="@drawable/arrow_right" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintStart_toEndOf="@+id/stockDeleteIv"
+        app:layout_constraintTop_toTopOf="@+id/stockDeleteIv"
+        app:srcCompat="@drawable/ic_pen" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

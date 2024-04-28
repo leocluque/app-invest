@@ -1,6 +1,5 @@
 <resources>
 
-
     <!--home -->
     <string name="total_balance">Saldo Total</string>
     <string name="my_investments">Meus Investimentos</string>
@@ -18,6 +17,7 @@
     <string name="stock_alert_title">Estoque alerta</string>
     <string name="stock_alert_value">R$ %s</string>
     <string name="stock_alert_create">Criar Alerta</string>
+    <string name="stock_alert_product_value_title">Valor do produto</string>
 
 
 </resources>

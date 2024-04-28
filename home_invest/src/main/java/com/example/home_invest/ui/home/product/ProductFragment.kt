@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.example.home_invest.R
@@ -17,7 +20,14 @@ class ProductFragment : Fragment() {
 
     private var binding: FragmentProductBinding? = null
     private var viewPagerAdapter: CustomViewPager? = null
-    private val fragments = listOf(InvestmentsFragment())
+    private val fragments = listOf(
+        InvestmentsFragment(),
+        InvestmentsFragment(),
+        InvestmentsFragment(),
+        InvestmentsFragment(),
+        InvestmentsFragment()
+    )
+    private var currentPage = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +41,7 @@ class ProductFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setViewPager()
         setView()
+        setListeners()
     }
 
     private fun setView() {
@@ -46,6 +57,17 @@ class ProductFragment : Fragment() {
                     ProgressItem(20f, context.getColor(R.color.green))
                 )
             )
+        }
+    }
+
+    private fun setListeners() {
+        binding?.backIv?.setOnClickListener {
+            binding?.productsVp?.setCurrentItem(currentPage.minus(1), true)
+        }
+        binding?.nextIv?.setOnClickListener {
+            binding?.nextIv?.setOnClickListener {
+                binding?.productsVp?.setCurrentItem(currentPage.plus(1), true)
+            }
         }
     }
 
@@ -67,7 +89,39 @@ class ProductFragment : Fragment() {
             }
 
             override fun onPageSelected(position: Int) {
-                binding?.indicatorDp?.setProgress(position * 10)
+                currentPage = position
+                if (position == 0) {
+                    context?.let { context ->
+                        var drawable = AppCompatResources.getDrawable(
+                            context,
+                            R.drawable.arrow_left
+                        )
+                        drawable = drawable?.let { DrawableCompat.wrap(it) }
+                        drawable?.let {
+                            DrawableCompat.setTint(
+                                it,
+                                ContextCompat.getColor(context, R.color.gray)
+                            )
+                        }
+                        binding?.backIv?.setImageDrawable(drawable)
+                    }
+                } else {
+                    context?.let { context ->
+                        var drawable = AppCompatResources.getDrawable(
+                            context,
+                            R.drawable.arrow_left
+                        )
+                        drawable = drawable?.let { DrawableCompat.wrap(it) }
+                        drawable?.let {
+                            DrawableCompat.setTint(
+                                it,
+                                ContextCompat.getColor(context, R.color.black)
+                            )
+                        }
+                        binding?.backIv?.setImageDrawable(drawable)
+                    }
+                }
+                binding?.indicatorDp?.setProgress(position.plus(1) * 20)
             }
         })
     }
