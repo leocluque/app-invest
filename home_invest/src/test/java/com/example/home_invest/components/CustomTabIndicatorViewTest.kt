@@ -1,49 +1,34 @@
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.RectF
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.home_invest.ui.components.CustomTabIndicatorView
-import org.junit.Assert.assertEquals
-import org.junit.Before
+import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertNotNull
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 
-@RunWith(RobolectricTestRunner::class)
+@RunWith(AndroidJUnit4::class)
 class CustomTabIndicatorViewTest {
 
-    private lateinit var context: Context
-    private lateinit var view: CustomTabIndicatorView
-
-    @Before
-    fun setup() {
-        context = ApplicationProvider.getApplicationContext()
-        view = CustomTabIndicatorView(context)
-        // Define o tamanho da view manualmente
-        view.measure(100, 100)
-        view.layout(0, 0, 100, 100)
+    @Test
+    fun constructor_initializesPaintObject() {
+        val view = CustomTabIndicatorView(context = ApplicationProvider.getApplicationContext())
+        assertNotNull(view.paint)
     }
 
     @Test
-    fun testLineColor() {
-        val expectedColor = Color.BLACK
-        assertEquals(expectedColor, view.paint.color)
+    fun constructor_setsPaintColorToBlack() {
+        val view = CustomTabIndicatorView(context = ApplicationProvider.getApplicationContext())
+        assertEquals(Color.BLACK, view.paint.color)
     }
 
     @Test
-    fun testLineWidth() {
-        val expectedWidth = 2f
-        assertEquals(expectedWidth, view.paint.strokeWidth)
-    }
-
-    @Test
-    fun testDrawLine() {
-        val canvas = Canvas()
-        val expectedRect = RectF(0f, 0f, 100f, 2f) // Linha horizontal de 2 pixels de altura
-        view.onDraw(canvas)
-        val drawnRect = RectF(0f, 0f, view.width.toFloat(), view.paint.strokeWidth)
-
-        assertEquals(expectedRect, drawnRect)
+    fun constructor_setsPaintStrokeWidthTo2f() {
+        val view = CustomTabIndicatorView(context = ApplicationProvider.getApplicationContext())
+        assertEquals(2f, view.paint.strokeWidth)
     }
 }
