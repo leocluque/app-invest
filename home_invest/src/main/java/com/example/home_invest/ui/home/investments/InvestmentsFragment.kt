@@ -52,7 +52,7 @@ class InvestmentsFragment : Fragment() {
                     }
 
                     is UiEventInvestments.Loading -> {
-                        setLoading(event.isLoading)
+                        // nothing
                     }
 
                     is UiEventInvestments.Error -> {
@@ -62,25 +62,22 @@ class InvestmentsFragment : Fragment() {
             }
         }
         viewLifecycleOwner.lifecycleScope.launch {
-        viewModel?.uiEventExtract?.collectLatest { event ->
-            when (event) {
-                is UiEventExtract.Success -> {
-                    setExtractAdapter(event.extract)
-                }
+            viewModel?.uiEventExtract?.collectLatest { event ->
+                when (event) {
+                    is UiEventExtract.Success -> {
+                        setExtractAdapter(event.extract)
+                    }
 
-                is UiEventExtract.Loading -> {
-                    setLoading(event.isLoading)
-                }
+                    is UiEventExtract.Loading -> {
+                        // nothing
+                    }
 
-                is UiEventExtract.Error -> {
-                    Toast.makeText(context, event.error, Toast.LENGTH_LONG).show()
+                    is UiEventExtract.Error -> {
+                        Toast.makeText(context, event.error, Toast.LENGTH_LONG).show()
+                    }
                 }
             }
-        }}
-    }
-
-    private fun setLoading(isLoading: Boolean) {
-
+        }
     }
 
     private fun setAdapter(list: List<ContractedProducts>) {

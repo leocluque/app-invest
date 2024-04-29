@@ -71,7 +71,7 @@ class ProductFragment : Fragment() {
                     }
 
                     is UiEventInvestments.Loading -> {
-                        setLoading(event.isLoading)
+                        //  nothing
                     }
 
                     is UiEventInvestments.Error -> {
@@ -80,10 +80,6 @@ class ProductFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun setLoading(isLoading: Boolean) {
-
     }
 
     private fun setView() {
@@ -116,6 +112,7 @@ class ProductFragment : Fragment() {
         viewPagerAdapter = CustomViewPager(childFragmentManager, context)
         viewPagerAdapter?.addFrag(fragments)
         binding?.productsVp?.adapter = viewPagerAdapter
+        val maxPages = 100 / fragments.size
         binding?.productsVp?.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
                 // nothing
@@ -136,7 +133,7 @@ class ProductFragment : Fragment() {
                 } else {
                     tintNextButton()
                 }
-                binding?.indicatorDp?.setProgress(position.plus(1) * 20)
+                binding?.indicatorDp?.setProgress(position.plus(1) * maxPages)
             }
         })
     }

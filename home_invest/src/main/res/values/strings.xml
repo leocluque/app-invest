@@ -10,6 +10,8 @@
     <string name="go_to_products">Ir para Produtos</string>
     <string name="page_initial">1</string>
     <string name="balance_day">Saldo do dia %s</string>
+    <string name="content_desc_btn_back">botão voltar</string>
+    <string name="content_desc_btn_next">botão avançar</string>
 
     <!-- Bottom Navigation -->
     <string name="bottom_navigation_home">Home</string>
