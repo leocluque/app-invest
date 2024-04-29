@@ -3,12 +3,11 @@ package com.example.home_invest.ui.components
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
-import androidx.annotation.ColorInt
-import com.example.home_invest.R
 
 class CircularProgressBar(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
@@ -37,7 +36,7 @@ class CircularProgressBar(context: Context, attrs: AttributeSet) : View(context,
             val rectF =
                 RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius)
 
-            paint.color = item.color
+            paint.color = Color.parseColor(item.color)
             canvas.drawArc(rectF, startAngle, sweepAngle, false, paint)
 
             startAngle += sweepAngle + segmentSpacing // Add spacing after each segment
@@ -45,14 +44,11 @@ class CircularProgressBar(context: Context, attrs: AttributeSet) : View(context,
     }
 
     fun setItems(list: List<ProgressItem>) {
-        if (list.isEmpty()) {
-            progressItems.add(ProgressItem(60f, context.getColor(R.color.blue)))
-            progressItems.add(ProgressItem(20f, context.getColor(R.color.red)))
-            progressItems.add(ProgressItem(20f, context.getColor(R.color.green)))
-        } else {
-            progressItems.addAll(list)
-        }
+        progressItems.clear() // Limpa os itens antigos
+        progressItems.addAll(list)
+        invalidate() // Notifica a View para redesenhar
     }
 }
 
-data class ProgressItem(val percentage: Float, @ColorInt val color: Int)
+data class ProgressItem(val productName: String, val percentage: Float, val color: String)
+

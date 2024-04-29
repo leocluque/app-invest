@@ -5,12 +5,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.home_invest.R
 import com.example.home_invest.databinding.ItemInvestmentsBinding
+import com.example.home_invest.ui.extensions.formatCurrencyBRL
+import com.example.network.data.response.ContractedProducts
 
 class InvestmentsAdapter(private val context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var list = listOf<String>()
+    var list = listOf<ContractedProducts>()
         set(value) {
             val result = DiffUtil.calculateDiff(
                 InvestmentsCallBack(
@@ -42,9 +45,12 @@ class InvestmentsAdapter(private val context: Context) :
 
     inner class ItemViewHolder(private val binding: ItemInvestmentsBinding) :
         RecyclerView.ViewHolder(binding.root.rootView) {
-        fun bind(item: String) {
+        fun bind(item: ContractedProducts) {
             binding.apply {
-
+                val percentage = item.percentage.toInt().toString()
+                percentageTv.text = "$percentage %"
+                nameInvestTv.text = item.productName
+                balanceValueTv.text = item.totalInvested.toFloat().formatCurrencyBRL()
             }
         }
     }

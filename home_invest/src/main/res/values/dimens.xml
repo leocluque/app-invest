@@ -13,6 +13,7 @@
     <dimen name="default_30dp">30dp</dimen>
     <dimen name="default_32dp">32dp</dimen>
     <dimen name="default_42dp">42dp</dimen>
+    <dimen name="default_50dp">50dp</dimen>
     <dimen name="default_56dp">56dp</dimen>
     <dimen name="default_70dp">70dp</dimen>
     <dimen name="default_100dp">100dp</dimen>

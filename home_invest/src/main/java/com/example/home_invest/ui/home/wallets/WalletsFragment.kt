@@ -31,18 +31,14 @@ class WalletsFragment : Fragment() {
         binding?.circularProgressBar?.configureComponent(
             "Abril 2024", "Total Investido", getString(
                 R.string.balance, "160.000,00"
+            ),
+            list = listOf(
+                ProgressItem("1",20f, "#f28500"),
+                ProgressItem("2",20f, "#7A124E"),
+                ProgressItem("3",20f, "#5786B9"),
+                ProgressItem("4",.20f, "#FFBB86FC"),
+                ProgressItem("5",20f, "#FF6200EE")
             )
         )
-        context?.let { context ->
-            binding?.circularProgressBar?.setList(
-                listOf(
-                    ProgressItem(20f, context.getColor(R.color.orange)),
-                    ProgressItem(20f, context.getColor(R.color.red)),
-                    ProgressItem(20f, context.getColor(R.color.blue)),
-                    ProgressItem(20f, context.getColor(R.color.purple_200)),
-                    ProgressItem(20f, context.getColor(R.color.purple_500))
-                )
-            )
-        }
     }
 }

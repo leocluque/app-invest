@@ -18,11 +18,12 @@ class CircleProgressBar @JvmOverloads constructor(
             CustomCircleProgressLayoutBinding.inflate(LayoutInflater.from(context), this, true)
     }
 
-    fun setList(list: List<ProgressItem>) {
-        itemView?.circularProgressBar?.setItems(list)
-    }
-
-    fun configureComponent(title: String? = null, subtitle: String? = null, value: String? = null) {
+    fun configureComponent(
+        title: String? = null,
+        subtitle: String? = null,
+        value: String? = null,
+        list: List<ProgressItem>
+    ) {
         title?.let {
             itemView?.totalProductsTv?.text = it
         }
@@ -34,5 +35,6 @@ class CircleProgressBar @JvmOverloads constructor(
         value?.let {
             itemView?.balanceTv?.text = it
         }
+        itemView?.circularProgressBar?.setItems(list)
     }
 }

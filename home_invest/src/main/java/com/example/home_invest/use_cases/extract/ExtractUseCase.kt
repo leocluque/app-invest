@@ -5,5 +5,5 @@ import com.example.network.data.response.ExtractResponse
 import kotlinx.coroutines.flow.Flow
 
 interface ExtractUseCase {
-    fun getExtract(): Flow<Resource<ExtractResponse>>
+    fun getExtract(): Flow<Resource<List<ExtractResponse>>>
 }

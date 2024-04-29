@@ -4,10 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.home_invest.databinding.FragmentInvestmentsBinding
 import com.example.home_invest.ui.extensions.setup
 import com.example.home_invest.ui.home.extract.ExtractAdapter
+import com.example.network.data.response.ContractedProducts
+import com.example.network.data.response.ExtractResponse
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class InvestmentsFragment : Fragment() {
 
@@ -15,6 +22,10 @@ class InvestmentsFragment : Fragment() {
     private var binding: FragmentInvestmentsBinding? = null
     private var adapter: InvestmentsAdapter? = null
     private var extractAdapter: ExtractAdapter? = null
+    private val viewModel: InvestmentsViewModel by lazy {
+        val factory = InvestmentsViewModelFactory()
+        ViewModelProvider(this, factory)[InvestmentsViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,20 +39,59 @@ class InvestmentsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.investimentsRv?.isNestedScrollingEnabled = false
         binding?.extractRv?.isNestedScrollingEnabled = false
-        setAdapter()
-        setExtractAdapter()
+        setObservables()
+        viewModel.getInvestments()
+        viewModel.getExtract()
     }
 
+    private fun setObservables() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.uiEventInvestments.collectLatest { event ->
+                when (event) {
+                    is UiEventInvestments.Success -> {
+                        setAdapter(event.investments.contractedProducts)
+                    }
 
-    private fun setAdapter() {
+                    is UiEventInvestments.Loading -> {
+                        setLoading(event.isLoading)
+                    }
+
+                    is UiEventInvestments.Error -> {
+                        Toast.makeText(context, event.error, Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+            viewModel.uiEventExtract.collectLatest { event ->
+                when (event) {
+                    is UiEventExtract.Success -> {
+                        setExtractAdapter(event.extract)
+                    }
+
+                    is UiEventExtract.Loading -> {
+                        setLoading(event.isLoading)
+                    }
+
+                    is UiEventExtract.Error -> {
+                        Toast.makeText(context, event.error, Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setLoading(isLoading: Boolean) {
+
+    }
+
+    private fun setAdapter(list: List<ContractedProducts>) {
         adapter = context?.let { InvestmentsAdapter(it) }
         binding?.investimentsRv?.setup(adapter)
-        adapter?.list = listOf("aaa", "", "", "")
+        adapter?.list = list
     }
 
-    private fun setExtractAdapter() {
+    private fun setExtractAdapter(list: List<ExtractResponse>) {
         extractAdapter = context?.let { ExtractAdapter(it) }
         binding?.extractRv?.setup(extractAdapter)
-        extractAdapter?.list = listOf("", "", "")
+        extractAdapter?.list = list
     }
 }

@@ -11,7 +11,7 @@ import java.io.IOException
 
 class ExtractUseCaseImp(private val repository: ExtractRepository) : ExtractUseCase {
 
-    override fun getExtract(): Flow<Resource<ExtractResponse>> = flow {
+    override fun getExtract(): Flow<Resource<List<ExtractResponse>>> = flow {
         try {
             emit(Resource.Loading)
             val data = repository.getExtract()

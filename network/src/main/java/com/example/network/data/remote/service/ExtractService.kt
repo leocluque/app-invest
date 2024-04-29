@@ -6,6 +6,6 @@ import retrofit2.http.GET
 interface ExtractService {
 
     @GET("getExtract")
-    suspend fun getExtract(): ExtractResponse
+    suspend fun getExtract(): List<ExtractResponse>
 
 }
