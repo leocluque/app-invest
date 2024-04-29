@@ -20,17 +20,16 @@ import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
-    private var binding: FragmentHomeBinding? = null
-    private var viewPagerAdapter: CustomViewPager? = null
-    private val homeViewModel: HomeViewModel by lazy {
-        val factory = HomeViewModelFactory()
-        ViewModelProvider(this, factory)[HomeViewModel::class.java]
-    }
+    var binding: FragmentHomeBinding? = null
+    var viewPagerAdapter: CustomViewPager? = null
+    lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val factory = HomeViewModelFactory()
+        homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding?.root
     }
@@ -44,7 +43,7 @@ class HomeFragment : Fragment() {
         homeViewModel.getBalance()
     }
 
-    private fun setObservables() {
+    fun setObservables() {
         viewLifecycleOwner.lifecycleScope.launch {
             homeViewModel.uiEvent.collectLatest { event ->
                 when (event) {
@@ -69,11 +68,11 @@ class HomeFragment : Fragment() {
         viewPagerAdapter?.addFrag(fragments)
     }
 
-    private fun setBalance(balance: String) {
+    fun setBalance(balance: String) {
         binding?.balanceValueTv?.text = balance
     }
 
-    private fun setLoading(isLoading: Boolean) {
+    fun setLoading(isLoading: Boolean) {
         binding?.loadingPb?.setVisible(isLoading)
         binding?.homeContentCl?.setVisible(!isLoading)
     }
@@ -88,7 +87,7 @@ class HomeFragment : Fragment() {
         binding?.pagesVp?.adapter = viewPagerAdapter
     }
 
-    private fun setListeners() {
+    fun setListeners() {
         binding?.apply {
 
             tabs.setWalletState {

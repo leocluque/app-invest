@@ -8,14 +8,14 @@ import android.view.View
 
 class CustomTabIndicatorView(context: Context) : View(context) {
 
-    private val paint = Paint()
+    val paint = Paint()
 
     init {
         paint.color = Color.BLACK // Set indicator color
         paint.strokeWidth = 2f // Set indicator width
     }
 
-    override fun onDraw(canvas: Canvas) {
+    public override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas.drawLine(0f, 0f, width.toFloat(), 0f, paint)
     }

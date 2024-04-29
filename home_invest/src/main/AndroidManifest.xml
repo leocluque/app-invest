@@ -3,9 +3,12 @@
 
     <application>
         <activity
-            android:name=".ui.home.HomeActivity"
-            android:theme="@style/Theme.AppInvest"
+            android:name=".ui.TestActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppInvest" />
     </application>
 
 </manifest>

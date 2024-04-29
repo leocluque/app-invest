@@ -22,7 +22,7 @@ class CircleProgressBar @JvmOverloads constructor(
         title: String? = null,
         subtitle: String? = null,
         value: String? = null,
-        list: List<ProgressItem>
+        list: List<ProgressItem> = listOf()
     ) {
         title?.let {
             itemView?.totalProductsTv?.text = it
@@ -36,5 +36,20 @@ class CircleProgressBar @JvmOverloads constructor(
             itemView?.balanceTv?.text = it
         }
         itemView?.circularProgressBar?.setItems(list)
+    }
+    fun getTitle(): String {
+        return itemView?.totalProductsTv?.text.toString()
+    }
+
+    fun getSubtitle() : String {
+        return itemView?.totalProductsTitleTv?.text.toString()
+    }
+
+    fun getBalance() : String {
+        return itemView?.balanceTv?.text.toString()
+    }
+
+    fun getItems(): List<ProgressItem> {
+        return itemView?.circularProgressBar?.getItems()?.toList() ?: emptyList()
     }
 }

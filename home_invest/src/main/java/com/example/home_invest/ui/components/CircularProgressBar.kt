@@ -1,6 +1,7 @@
 package com.example.home_invest.ui.components
 
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -9,7 +10,7 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 
-class CircularProgressBar(context: Context, attrs: AttributeSet) : View(context, attrs) {
+class CircularProgressBar(context: Context, attrs: AttributeSet?= null) : View(context, attrs) {
 
     private val paint = Paint()
     private val progressItems = mutableListOf<ProgressItem>()
@@ -26,7 +27,8 @@ class CircularProgressBar(context: Context, attrs: AttributeSet) : View(context,
         startAnimation()
     }
 
-    override fun onDraw(canvas: Canvas) {
+    @SuppressLint("DrawAllocation")
+    public override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
         val centerX = width / 2f
@@ -72,6 +74,8 @@ class CircularProgressBar(context: Context, attrs: AttributeSet) : View(context,
         progressItems.addAll(list)
         invalidate() // Notifica a View para redesenhar
     }
+
+    fun getItems() = progressItems
 }
 
 data class ProgressItem(val productName: String, val percentage: Float, val color: String)

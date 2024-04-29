@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.onEach
 
 class HomeViewModel(
     private val balanceUseCase: BalanceUseCase
-) : ViewModel() {
+)  : ViewModel() {
 
     private val _uiEvent = MutableSharedFlow<UiEventHome>()
     val uiEvent: SharedFlow<UiEventHome> = _uiEvent.asSharedFlow()

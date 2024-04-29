@@ -12,7 +12,7 @@ import com.example.home_invest.ui.components.ProgressItem
 class WalletsFragment : Fragment() {
 
 
-    private var binding: FragmentWalletsBinding? = null
+    internal var binding: FragmentWalletsBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +27,7 @@ class WalletsFragment : Fragment() {
         setView()
     }
 
-    private fun setView() {
+    internal fun setView() {
         binding?.circularProgressBar?.configureComponent(
             "Abril 2024", "Total Investido", getString(
                 R.string.balance, "160.000,00"
