@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/bgStatusIv"
-        android:layout_width="@dimen/default_70dp"
+        android:layout_width="@dimen/default_100dp"
         android:layout_height="@dimen/default_24dp"
         android:layout_marginStart="@dimen/default_16dp"
         android:layout_marginTop="@dimen/default_16dp"
@@ -22,7 +22,7 @@
         android:id="@+id/stockTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Estoque"
+        tools:text="Estoque"
         android:padding="@dimen/default_8dp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/bgStatusIv"
@@ -110,8 +110,9 @@
 
     <ImageView
         android:id="@+id/stockDeleteIv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="@dimen/default_16dp"
         android:layout_marginStart="@dimen/default_16dp"
         android:layout_marginEnd="0dp"
         app:layout_constraintEnd_toStartOf="@+id/editStockIv"
@@ -121,9 +122,10 @@
 
     <ImageView
         android:id="@+id/editStockIv"
-        android:layout_width="@dimen/default_16dp"
-        android:layout_height="@dimen/default_16dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="@dimen/default_16dp"
+        android:padding="@dimen/default_16dp"
         app:layout_constraintBottom_toBottomOf="@+id/stockDeleteIv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/stockDeleteIv"

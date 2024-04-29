@@ -1,5 +1,6 @@
 package com.example.home_invest.builder
 
+import com.example.network.NetworkConstants
 import com.example.network.data.create_service.ServiceGenerator
 import com.example.network.data.remote.repository.balance.BalanceRepository
 import com.example.network.data.remote.repository.balance.BalanceRepositoryImp
@@ -13,7 +14,6 @@ import com.example.network.data.remote.service.InvestmentsService
 
 object HomeBuilder {
 
-    private const val BASE_URL = "http://192.168.3.41:8080/"
     private var balanceRepository: BalanceRepository? = null
     private var investmentsRepository: InvestmentsRepository? = null
     private var extractRepository: ExtractRepository? = null
@@ -28,7 +28,7 @@ object HomeBuilder {
     private fun provideBalanceService(): BalanceRepository? {
         val retrofit = ServiceGenerator.createService(
             BalanceService::class.java,
-            url = BASE_URL
+            url = NetworkConstants.BASE_URL
         )
         balanceRepository = BalanceRepositoryImp(retrofit)
         return balanceRepository
@@ -37,7 +37,7 @@ object HomeBuilder {
     private fun provideInvestmentsService(): InvestmentsRepository? {
         val retrofit = ServiceGenerator.createService(
             InvestmentsService::class.java,
-            url = BASE_URL
+            url = NetworkConstants.BASE_URL
         )
         investmentsRepository = InvestmentsRepositoryImp(retrofit)
         return investmentsRepository
@@ -46,7 +46,7 @@ object HomeBuilder {
     private fun provideExtractService(): ExtractRepository? {
         val retrofit = ServiceGenerator.createService(
             ExtractService::class.java,
-            url = BASE_URL
+            url = NetworkConstants.BASE_URL
         )
         extractRepository = ExtractRepositoryImp(retrofit)
         return extractRepository

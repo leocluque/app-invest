@@ -1,6 +1,6 @@
 package com.example.home_invest.ui.components
 
-import android.annotation.SuppressLint
+import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -15,13 +15,17 @@ class CircularProgressBar(context: Context, attrs: AttributeSet) : View(context,
     private val progressItems = mutableListOf<ProgressItem>()
     private val segmentSpacing = 1f // Adjust spacing as needed
 
+    private var currentRotationAngle = 0f
+
     init {
         paint.isAntiAlias = true
         paint.style = Paint.Style.STROKE
         paint.strokeWidth = 60f
+
+        // Inicia a animação
+        startAnimation()
     }
 
-    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
@@ -29,9 +33,9 @@ class CircularProgressBar(context: Context, attrs: AttributeSet) : View(context,
         val centerY = height / 2f
         val radius = minOf(centerX, centerY) - paint.strokeWidth / 2f
 
-        var startAngle = -90f // Start angle at -90 degrees (top of circle)
+        var startAngle = -90f + currentRotationAngle // Start angle at -90 degrees (top of circle)
 
-        for (item in progressItems) {
+        for ((index, item) in progressItems.withIndex()) {
             val sweepAngle = item.percentage / 100f * 360f
             val rectF =
                 RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius)
@@ -39,8 +43,28 @@ class CircularProgressBar(context: Context, attrs: AttributeSet) : View(context,
             paint.color = Color.parseColor(item.color)
             canvas.drawArc(rectF, startAngle, sweepAngle, false, paint)
 
-            startAngle += sweepAngle + segmentSpacing // Add spacing after each segment
+            // Adiciona espaço após cada item, exceto para o último item
+            if (index < progressItems.size - 1) {
+                startAngle += sweepAngle + segmentSpacing // Add spacing after each segment
+            }
         }
+    }
+
+    private fun startAnimation() {
+        // Define o valor inicial e final da animação
+        val startAngle = 0f
+        val endAngle = 360f
+
+        // Cria o animador de valores
+        val animator = ValueAnimator.ofFloat(startAngle, endAngle)
+        animator.duration = 2000 // Define a duração da animação em milissegundos
+        animator.addUpdateListener { animation ->
+            // Atualiza o ângulo de rotação atual
+            currentRotationAngle = animation.animatedValue as Float
+            // Solicita uma nova renderização da View
+            invalidate()
+        }
+        animator.start() // Inicia a animação
     }
 
     fun setItems(list: List<ProgressItem>) {
@@ -51,4 +75,6 @@ class CircularProgressBar(context: Context, attrs: AttributeSet) : View(context,
 }
 
 data class ProgressItem(val productName: String, val percentage: Float, val color: String)
+
+
 

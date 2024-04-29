@@ -6,6 +6,7 @@ import com.example.app_invest.ui.splash.SplashActivity
 import com.example.home_invest.builder.HomeBuilder
 import com.example.network.data.create_service.UserUnauthorizedBus
 import com.example.network.data.local.PreferencesHelper
+import com.example.stock_alert.builder.StockAlertBuilder
 
 class BaseApplication : Application() {
 
@@ -13,7 +14,13 @@ class BaseApplication : Application() {
         super.onCreate()
         setPreferencesHelper()
         setBus()
+        executeDepInjection()
+    }
+
+
+    private fun executeDepInjection() {
         HomeBuilder.executeDepInject()
+        StockAlertBuilder.executeDepInject()
     }
 
     private fun setPreferencesHelper() {

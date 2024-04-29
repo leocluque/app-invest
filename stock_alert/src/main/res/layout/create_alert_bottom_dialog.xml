@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@drawable/background_white_dialog"
+    android:orientation="vertical"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="?attr/actionBarSize"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_white_dialog">
+
+        <ImageView
+            android:id="@+id/closeIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/stock_alert_close_desc"
+            android:padding="@dimen/default_16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_close" />
+
+
+        <EditText
+            android:id="@+id/productNameEt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_16dp"
+            android:layout_marginEnd="@dimen/default_16dp"
+            android:hint="@string/stock_alert_name_product_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/closeIv" />
+
+
+        <com.example.stock_alert.ui.components.CurrencyEditText
+            android:id="@+id/productValueEt"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/default_56dp"
+            android:layout_marginStart="@dimen/default_16dp"
+            android:layout_marginTop="@dimen/default_16dp"
+            android:layout_marginEnd="@dimen/default_16dp"
+            android:gravity="center_vertical"
+            android:inputType="number"
+            android:hint="@string/stock_alert_product_value_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productNameEt" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productValueEt">
+
+            <RadioButton
+                android:id="@+id/availableBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_16dp"
+                android:text="@string/stock_alert_available_product" />
+
+            <RadioButton
+                android:id="@+id/notAvailableBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_16dp"
+                android:text="@string/stock_alert_not_available_product" />
+        </RadioGroup>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/createAlertBtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_56dp"
+            android:layout_marginStart="@dimen/default_16dp"
+            android:layout_marginTop="@dimen/default_4dp"
+            android:layout_marginEnd="@dimen/default_16dp"
+            android:layout_marginBottom="@dimen/default_32dp"
+            android:background="@drawable/bg_round_orange"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/stock_alert_create_alert"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

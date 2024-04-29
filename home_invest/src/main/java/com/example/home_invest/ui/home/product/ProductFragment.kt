@@ -52,11 +52,8 @@ class ProductFragment : Fragment() {
         setListeners()
         tintBackButton()
         setObservables()
-    }
-
-    override fun onResume() {
-        super.onResume()
         viewModel.getInvestments()
+
     }
 
     private fun setObservables() {
