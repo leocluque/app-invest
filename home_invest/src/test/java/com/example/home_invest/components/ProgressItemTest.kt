@@ -1,13 +1,10 @@
 package com.example.home_invest.components
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.home_invest.ui.components.ProgressItem
 import junit.framework.TestCase.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
 class ProgressItemTest {
 
     @Test
