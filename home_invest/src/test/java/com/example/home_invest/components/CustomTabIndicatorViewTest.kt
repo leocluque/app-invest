@@ -1,7 +1,6 @@
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.Paint
 import android.graphics.RectF
 import androidx.test.core.app.ApplicationProvider
 import com.example.home_invest.ui.components.CustomTabIndicatorView
