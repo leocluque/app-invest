@@ -14,9 +14,6 @@ import com.example.home_invest.ui.extensions.isSameDay
 import com.example.home_invest.ui.extensions.setVisible
 import com.example.network.data.response.ExtractResponse
 import com.example.network.data.response.TransactionType
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 class ExtractAdapter(private val context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
