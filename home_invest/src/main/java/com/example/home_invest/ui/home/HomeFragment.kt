@@ -4,18 +4,28 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager.widget.ViewPager
-import com.example.home_invest.R
 import com.example.home_invest.databinding.FragmentHomeBinding
 import com.example.home_invest.ui.components.CustomViewPager
+import com.example.home_invest.ui.extensions.formatCurrencyBRL
+import com.example.home_invest.ui.extensions.setVisible
 import com.example.home_invest.ui.home.product.ProductFragment
 import com.example.home_invest.ui.home.wallets.WalletsFragment
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
     private var viewPagerAdapter: CustomViewPager? = null
+    private val homeViewModel: HomeViewModel by lazy {
+        val factory = HomeViewModelFactory()
+        ViewModelProvider(this, factory)[HomeViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,12 +40,42 @@ class HomeFragment : Fragment() {
         setListeners()
         setAdapter()
         setView()
+        setObservables()
+        homeViewModel.getBalance()
+    }
+
+    private fun setObservables() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            homeViewModel.uiEvent.collectLatest { event ->
+                when (event) {
+                    is UiEventHome.Success -> {
+                        setBalance(event.balance.balance.toFloat().formatCurrencyBRL())
+                    }
+
+                    is UiEventHome.Loading -> {
+                        setLoading(event.isLoading)
+                    }
+
+                    is UiEventHome.Error -> {
+                        Toast.makeText(context, event.error, Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+        }
     }
 
     internal fun setView() {
         val fragments = listOf(ProductFragment(), WalletsFragment())
         viewPagerAdapter?.addFrag(fragments)
-        binding?.balanceValueTv?.text = getString(R.string.balance, "160.000,00")
+    }
+
+    private fun setBalance(balance: String) {
+        binding?.balanceValueTv?.text = balance
+    }
+
+    private fun setLoading(isLoading: Boolean) {
+        binding?.loadingPb?.setVisible(isLoading)
+        binding?.homeContentCl?.setVisible(!isLoading)
     }
 
     private fun setAdapter() {

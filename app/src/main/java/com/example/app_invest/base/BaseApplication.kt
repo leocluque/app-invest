@@ -3,6 +3,7 @@ package com.example.app_invest.base
 import android.app.Application
 import android.content.Intent
 import com.example.app_invest.ui.splash.SplashActivity
+import com.example.home_invest.builder.HomeBuilder
 import com.example.network.data.create_service.UserUnauthorizedBus
 import com.example.network.data.local.PreferencesHelper
 
@@ -12,6 +13,7 @@ class BaseApplication : Application() {
         super.onCreate()
         setPreferencesHelper()
         setBus()
+        HomeBuilder.executeDepInject()
     }
 
     private fun setPreferencesHelper() {

@@ -23,9 +23,7 @@ class ServiceGenerator {
 
             val httpClient = OkHttpClient.Builder()
             httpClient.addInterceptor(
-                HttpLoggingInterceptor()
-                    .setLevel(HttpLoggingInterceptor.Level.BODY)
-            )
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
 
             httpClient.connectTimeout(50, TimeUnit.SECONDS)
             httpClient.readTimeout(50, TimeUnit.SECONDS)
