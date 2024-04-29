@@ -7,12 +7,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.home_invest.R
 import com.example.home_invest.databinding.ItemExtractBinding
+import com.example.home_invest.ui.extensions.changeDateFormat
 import com.example.home_invest.ui.extensions.dateFromString
 import com.example.home_invest.ui.extensions.formatCurrencyBRL
 import com.example.home_invest.ui.extensions.isSameDay
 import com.example.home_invest.ui.extensions.setVisible
 import com.example.network.data.response.ExtractResponse
 import com.example.network.data.response.TransactionType
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class ExtractAdapter(private val context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -42,7 +46,8 @@ class ExtractAdapter(private val context: Context) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is ItemViewHolder -> {
-                holder.bind(list[position], if (position == 0) null else list[position - 1])            }
+                holder.bind(list[position], if (position == 0) null else list[position - 1])
+            }
         }
     }
 
@@ -58,14 +63,19 @@ class ExtractAdapter(private val context: Context) :
                     extractIndicatorIv.setImageResource(R.drawable.arrow_down_extract)
                 }
 
-                val datePrevious = previousItem?.date?.dateFromString("dd/MM/yyyy")
-                val date = item.date.dateFromString("dd/MM/yyyy")
-                transactionDateLl.setVisible(datePrevious?.let { date?.isSameDay(it) } == true)
+                val datePrevious = previousItem?.date?.dateFromString("yyyy/MM/dd")
+                val newDate = item.date.dateFromString("yyyy/MM/dd")
 
-                dateTv.text = item.date
+                if (datePrevious?.let { newDate?.isSameDay(it) } == true) {
+                    transactionDateLl.setVisible(false)
+                } else {
+                    transactionDateLl.setVisible(true)
+                }
+
+                val transactionDate = item.date.changeDateFormat("yyyy-MM-dd", "dd/MM/yyyy")
+                dateTv.text = context.getString(R.string.balance_day, transactionDate)
                 balanceDayTv.text = item.balanceOfDay.toFloat().formatCurrencyBRL()
             }
         }
     }
-
 }

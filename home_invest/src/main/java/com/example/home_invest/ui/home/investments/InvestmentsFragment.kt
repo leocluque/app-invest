@@ -22,10 +22,7 @@ class InvestmentsFragment : Fragment() {
     private var binding: FragmentInvestmentsBinding? = null
     private var adapter: InvestmentsAdapter? = null
     private var extractAdapter: ExtractAdapter? = null
-    private val viewModel: InvestmentsViewModel by lazy {
-        val factory = InvestmentsViewModelFactory()
-        ViewModelProvider(this, factory)[InvestmentsViewModel::class.java]
-    }
+    private var viewModel: InvestmentsViewModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,16 +34,18 @@ class InvestmentsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val factory = InvestmentsViewModelFactory()
+        viewModel = ViewModelProvider(this, factory)[InvestmentsViewModel::class.java]
         binding?.investimentsRv?.isNestedScrollingEnabled = false
         binding?.extractRv?.isNestedScrollingEnabled = false
         setObservables()
-        viewModel.getInvestments()
-        viewModel.getExtract()
+        viewModel?.getInvestments()
+        viewModel?.getExtract()
     }
 
     private fun setObservables() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.uiEventInvestments.collectLatest { event ->
+            viewModel?.uiEventInvestments?.collectLatest { event ->
                 when (event) {
                     is UiEventInvestments.Success -> {
                         setAdapter(event.investments.contractedProducts)
@@ -61,22 +60,23 @@ class InvestmentsFragment : Fragment() {
                     }
                 }
             }
-            viewModel.uiEventExtract.collectLatest { event ->
-                when (event) {
-                    is UiEventExtract.Success -> {
-                        setExtractAdapter(event.extract)
-                    }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+        viewModel?.uiEventExtract?.collectLatest { event ->
+            when (event) {
+                is UiEventExtract.Success -> {
+                    setExtractAdapter(event.extract)
+                }
 
-                    is UiEventExtract.Loading -> {
-                        setLoading(event.isLoading)
-                    }
+                is UiEventExtract.Loading -> {
+                    setLoading(event.isLoading)
+                }
 
-                    is UiEventExtract.Error -> {
-                        Toast.makeText(context, event.error, Toast.LENGTH_LONG).show()
-                    }
+                is UiEventExtract.Error -> {
+                    Toast.makeText(context, event.error, Toast.LENGTH_LONG).show()
                 }
             }
-        }
+        }}
     }
 
     private fun setLoading(isLoading: Boolean) {

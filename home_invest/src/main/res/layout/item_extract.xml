@@ -17,7 +17,6 @@
             android:id="@+id/dateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_16dp"
             android:layout_marginTop="@dimen/default_16dp"
             tools:text="15 de janeiro"
             android:textColor="@color/black"
@@ -28,7 +27,6 @@
             android:id="@+id/balanceDayTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_16dp"
             android:layout_marginTop="@dimen/default_4dp"
             tools:text="Saldo do dia R$2,00"
             android:textSize="@dimen/default_16sp" />
