@@ -33,9 +33,6 @@ class ProductFragment : Fragment() {
     }
     private val fragments = listOf(
         InvestmentsFragment(),
-        InvestmentsFragment(),
-        InvestmentsFragment(),
-        InvestmentsFragment(),
         InvestmentsFragment()
     )
     private var currentPage = 0

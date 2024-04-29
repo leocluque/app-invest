@@ -36,7 +36,7 @@ class WalletsFragment : Fragment() {
                 ProgressItem("1",20f, "#f28500"),
                 ProgressItem("2",20f, "#7A124E"),
                 ProgressItem("3",20f, "#5786B9"),
-                ProgressItem("4",.20f, "#FFBB86FC"),
+                ProgressItem("4",20f, "#FFBB86FC"),
                 ProgressItem("5",20f, "#FF6200EE")
             )
         )
