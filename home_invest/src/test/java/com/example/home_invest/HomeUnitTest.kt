@@ -1,7 +1,6 @@
 package com.example.home_invest
 
 import android.content.Context
-import android.view.LayoutInflater
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -14,11 +13,8 @@ import org.junit.Assert.*
 
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.test.core.app.ActivityScenario
-import androidx.viewpager.widget.ViewPager
 import com.example.home_invest.databinding.ActivityHomeBinding
 import com.example.home_invest.ui.components.CustomViewPager
-import com.example.home_invest.ui.home.HomeActivity
 import com.example.home_invest.ui.home.product.ProductFragment
 import com.example.home_invest.ui.home.wallets.WalletsFragment
 import org.junit.Before

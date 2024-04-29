@@ -1,15 +1,16 @@
-package com.example.home_invest.ui.home
+package com.example.app_invest.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
-import com.example.home_invest.R
-import com.example.home_invest.databinding.ActivityHomeBinding
+import com.example.app_invest.R
+import com.example.app_invest.databinding.ActivityHostBinding
 
-class HomeActivity : AppCompatActivity() {
+class HostActivity : AppCompatActivity() {
 
-    internal lateinit var binding: ActivityHomeBinding
+    internal lateinit var binding: ActivityHostBinding
 
     internal val bottomNavigation by lazy {
         binding.bottomNavigation
@@ -19,9 +20,9 @@ class HomeActivity : AppCompatActivity() {
         homeMain
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivityHostBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setListeners()
     }
@@ -37,13 +38,14 @@ class HomeActivity : AppCompatActivity() {
                 } else when (item.itemId) {
                     R.id.homeMenuItem -> {
                         item.isChecked = true
-                        Navigation.findNavController(this@HomeActivity, mainHomeFrame)
+                        Navigation.findNavController(this@HostActivity, mainHomeFrame)
                             .navigate(R.id.homeFragment)
                     }
 
                     R.id.stockAlertItem -> {
                         item.isChecked = true
-                        // todo
+                        Navigation.findNavController(this@HostActivity, mainHomeFrame)
+                            .navigate(R.id.stockAlertFragment)
                     }
                 }
                 return@setOnItemSelectedListener false
@@ -51,6 +53,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         // nothing
     }

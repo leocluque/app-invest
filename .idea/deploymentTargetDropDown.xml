@@ -2,7 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="HomeActivityTest">
+      <entry key="HomeFragmentTest">
         <State>
           <runningDeviceTargetSelectedWithDropDown>
             <Target>
@@ -26,33 +26,14 @@
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-26T18:15:11.353016Z" />
-        </State>
-      </entry>
-      <entry key="MainActivityTest">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="$USER_HOME$/.android/avd/Pixel_2_API_34.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-26T18:05:16.512368Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-04-29T12:47:25.157678Z" />
         </State>
       </entry>
       <entry key="app">
-        <State />
-      </entry>
-      <entry key="testClickFirstTab()">
         <State>
-          <runningDeviceTargetSelectedWithDropDown>
+          <targetSelectedWithDropDown>
             <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
+              <type value="QUICK_BOOT_TARGET" />
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
@@ -60,9 +41,12 @@
                 </Key>
               </deviceKey>
             </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-26T18:14:26.803149Z" />
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-04-29T12:31:19.267786Z" />
         </State>
+      </entry>
+      <entry key="testTextViewDisplayed()">
+        <State />
       </entry>
     </value>
   </component>
