@@ -1,6 +1,5 @@
 package com.example.home_invest.builder
 
-import com.example.network.data.create_service.AddCookieInterceptor
 import com.example.network.data.create_service.ServiceGenerator
 import com.example.network.data.remote.repository.balance.BalanceRepository
 import com.example.network.data.remote.repository.balance.BalanceRepositoryImp
