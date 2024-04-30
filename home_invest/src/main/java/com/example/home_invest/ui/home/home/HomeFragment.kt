@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager.widget.ViewPager
+import com.example.home_invest.builder.HomeBuilder
 import com.example.home_invest.databinding.FragmentHomeBinding
 import com.example.home_invest.ui.components.CustomViewPager
 import com.example.home_invest.ui.extensions.formatCurrencyBRL
@@ -21,14 +22,14 @@ class HomeFragment : Fragment() {
 
     var binding: FragmentHomeBinding? = null
     var viewPagerAdapter: CustomViewPager? = null
-    lateinit var homeViewModel: HomeViewModel
+     var homeViewModel: HomeViewModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val factory = HomeViewModelFactory()
-        homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
+        val factory = HomeBuilder.getBalanceRepository()?.let { HomeViewModelFactory(it) }
+        homeViewModel = factory?.let { ViewModelProvider(this, it) }?.get(HomeViewModel::class.java)
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding?.root
     }
@@ -39,12 +40,12 @@ class HomeFragment : Fragment() {
         setAdapter()
         setView()
         setObservables()
-        homeViewModel.getBalance()
+        homeViewModel?.getBalance()
     }
 
     fun setObservables() {
         viewLifecycleOwner.lifecycleScope.launch {
-            homeViewModel.uiEvent.collectLatest { event ->
+            homeViewModel?.uiEvent?.collectLatest { event ->
                 when (event) {
                     is UiEventHome.Success -> {
                         setBalance(event.balance.balance.toFloat().formatCurrencyBRL())

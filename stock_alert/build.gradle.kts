@@ -8,6 +8,14 @@ android {
     namespace = "com.example.stock_alert"
     compileSdk = 34
 
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+    testCoverage {
+        jacocoVersion = "0.8.5"
+    }
     defaultConfig {
         minSdk = 24
 
@@ -22,6 +30,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        debug {
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
         }
     }
     viewBinding {

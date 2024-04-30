@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.example.home_invest.builder.HomeBuilder
 import com.example.home_invest.databinding.FragmentInvestmentsBinding
 import com.example.home_invest.ui.extensions.setup
 import com.example.home_invest.ui.home.extract.ExtractAdapter
@@ -24,7 +25,7 @@ class InvestmentsFragment : Fragment() {
     private var adapter: InvestmentsAdapter? = null
     private var extractAdapter: ExtractAdapter? = null
     private var viewModel: InvestmentsViewModel? = null
-    private lateinit var productViewModel: ProductViewModel
+    private var productViewModel: ProductViewModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,15 +37,15 @@ class InvestmentsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val factory = ProductViewModelFactory()
+        val factory = HomeBuilder.getInvestmentsRepository()?.let { ProductViewModelFactory(it) }
         productViewModel =
-            ViewModelProvider(requireActivity(), factory)[ProductViewModel::class.java]
+            factory?.let { ViewModelProvider(requireActivity(), it) }?.get(ProductViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val factory = InvestmentsViewModelFactory()
-        viewModel = ViewModelProvider(this, factory)[InvestmentsViewModel::class.java]
+        val factory = HomeBuilder.getExtractRepository()?.let { InvestmentsViewModelFactory(it) }
+        viewModel = factory?.let { ViewModelProvider(this, it) }?.get(InvestmentsViewModel::class.java)
         binding?.investimentsRv?.isNestedScrollingEnabled = false
         binding?.extractRv?.isNestedScrollingEnabled = false
         setObservables()
@@ -53,7 +54,7 @@ class InvestmentsFragment : Fragment() {
 
     private fun setObservables() {
         viewLifecycleOwner.lifecycleScope.launch {
-            productViewModel.uiEventInvestments.observeForever() { event ->
+            productViewModel?.uiEventInvestments?.observeForever() { event ->
                 when (event) {
                     is UiEventInvestments.Success -> {
                         setAdapter(event.investments.contractedProducts)

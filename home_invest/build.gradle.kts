@@ -13,6 +13,9 @@ android {
             isIncludeAndroidResources = true
         }
     }
+    testCoverage {
+        jacocoVersion = "0.8.5"
+    }
 
     defaultConfig {
         minSdk = 24
@@ -28,6 +31,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        debug {
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
         }
     }
     viewBinding {
@@ -65,14 +72,12 @@ dependencies {
     androidTestImplementation ("androidx.arch.core:core-testing:2.2.0")
     testImplementation ("androidx.arch.core:core-testing:2.2.0")
     testImplementation("androidx.fragment:fragment-testing:1.6.2")
-
-//    testImplementation ("org.mockito:mockito-junit-jupiter:5.11.0")
     testImplementation ("org.robolectric:robolectric:4.12.1")
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0")
 
     testImplementation("io.mockk:mockk:1.10.6")
     androidTestImplementation("io.mockk:mockk:1.10.6")
 
-//    testImplementation("com.google.truth:1.2.0")
     androidTestImplementation("androidx.test:core-ktx:1.4.0")
 
     //netWork

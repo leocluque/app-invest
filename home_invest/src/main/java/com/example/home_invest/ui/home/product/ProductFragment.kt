@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager.widget.ViewPager
 import com.example.home_invest.R
+import com.example.home_invest.builder.HomeBuilder
 import com.example.home_invest.data.model.toProgressItem
 import com.example.home_invest.databinding.FragmentProductBinding
 import com.example.home_invest.ui.components.CustomViewPager
@@ -27,10 +28,7 @@ class ProductFragment : Fragment() {
 
     private var binding: FragmentProductBinding? = null
     private var viewPagerAdapter: CustomViewPager? = null
-    private val viewModel: ProductViewModel by lazy {
-        val factory = ProductViewModelFactory()
-        ViewModelProvider(requireActivity(), factory)[ProductViewModel::class.java]
-    }
+    private var viewModel: ProductViewModel? = null
     private val fragments = listOf(
         InvestmentsFragment(),
         InvestmentsFragment()
@@ -41,6 +39,8 @@ class ProductFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val factory = HomeBuilder.getInvestmentsRepository()?.let { ProductViewModelFactory(it) }
+        viewModel = factory?.let { ViewModelProvider(requireActivity(), it) }?.get(ProductViewModel::class.java)
         binding = FragmentProductBinding.inflate(inflater, container, false)
         return binding?.root
     }
@@ -52,13 +52,13 @@ class ProductFragment : Fragment() {
         setListeners()
         tintBackButton()
         setObservables()
-        viewModel.getInvestments()
+        viewModel?.getInvestments()
 
     }
 
     private fun setObservables() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.uiEventInvestments.observe(viewLifecycleOwner) { event ->
+            viewModel?.uiEventInvestments?.observe(viewLifecycleOwner) { event ->
                 when (event) {
                     is UiEventInvestments.Success -> {
                         setComponent(

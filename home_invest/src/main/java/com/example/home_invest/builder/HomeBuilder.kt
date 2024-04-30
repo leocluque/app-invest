@@ -25,7 +25,7 @@ object HomeBuilder {
     }
 
 
-    private fun provideBalanceService(): BalanceRepository? {
+    internal fun provideBalanceService(): BalanceRepository? {
         val retrofit = ServiceGenerator.createService(
             BalanceService::class.java,
             url = NetworkConstants.BASE_URL
@@ -34,7 +34,7 @@ object HomeBuilder {
         return balanceRepository
     }
 
-    private fun provideInvestmentsService(): InvestmentsRepository? {
+    internal fun provideInvestmentsService(): InvestmentsRepository? {
         val retrofit = ServiceGenerator.createService(
             InvestmentsService::class.java,
             url = NetworkConstants.BASE_URL
@@ -43,7 +43,7 @@ object HomeBuilder {
         return investmentsRepository
     }
 
-    private fun provideExtractService(): ExtractRepository? {
+    internal fun provideExtractService(): ExtractRepository? {
         val retrofit = ServiceGenerator.createService(
             ExtractService::class.java,
             url = NetworkConstants.BASE_URL

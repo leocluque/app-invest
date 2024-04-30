@@ -8,6 +8,11 @@ android {
     namespace = "com.example.app_invest"
     compileSdk = 34
 
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
     testCoverage {
         jacocoVersion = "0.8.5"
     }
@@ -54,9 +59,9 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
-    packaging {
+    packagingOptions {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
         }
     }
 }
