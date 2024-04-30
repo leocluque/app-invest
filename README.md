@@ -1,4 +1,4 @@
-# README -  Projeto de Desafio Android
+#  Projeto de Desafio Android
 
 Desafio Android para o cargo de Especialista. Aqui você encontrará informações sobre o repositório, a aplicação e a estratégia de implementação adotada.
 
