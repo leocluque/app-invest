@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
                     }
 
                     is UiEventHome.Error -> {
-                        Toast.makeText(context, event.error, Toast.LENGTH_LONG).show()
+                        // nothing
                     }
                 }
             }

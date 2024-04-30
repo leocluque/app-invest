@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
@@ -13,10 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager.widget.ViewPager
 import com.example.home_invest.R
+import com.example.home_invest.data.model.toProgressItem
 import com.example.home_invest.databinding.FragmentProductBinding
 import com.example.home_invest.ui.components.CustomViewPager
-import com.example.home_invest.ui.components.ProgressItem
 import com.example.home_invest.ui.extensions.formatCurrencyBRL
+import com.example.home_invest.ui.extensions.setVisible
 import com.example.home_invest.ui.home.investments.InvestmentsFragment
 import com.example.home_invest.ui.home.investments.UiEventInvestments
 import com.example.network.data.response.ContractedProducts
@@ -72,7 +72,7 @@ class ProductFragment : Fragment() {
                     }
 
                     is UiEventInvestments.Error -> {
-                        Toast.makeText(context, event.error, Toast.LENGTH_LONG).show()
+                        setStateViewError()
                     }
                 }
             }
@@ -84,10 +84,20 @@ class ProductFragment : Fragment() {
         binding?.lastPageTv?.text = fragments.size.toString()
     }
 
+    private fun setStateViewError() {
+        binding?.apply {
+            backIv.setVisible(false)
+            initialPageTv.setVisible(false)
+            lastPageTv.setVisible(false)
+            nextIv.setVisible(false)
+            indicatorDp.setVisible(false)
+        }
+    }
+
     private fun setComponent(balance: Double, list: List<ContractedProducts>) {
         binding?.circularProgressBar?.configureComponent(
             title = getString(R.string.all_products),
-            subtitle = "100%",
+            subtitle = getString(R.string.hundred),
             value = balance.toFloat().formatCurrencyBRL(),
             list = list.map { it.toProgressItem() }
         )
@@ -168,12 +178,4 @@ class ProductFragment : Fragment() {
             binding?.backIv?.setImageDrawable(drawable)
         }
     }
-}
-
-fun ContractedProducts.toProgressItem(): ProgressItem {
-    return ProgressItem(
-        productName = productName,
-        percentage = percentage.toInt().toFloat(),
-        color = color
-    )
 }

@@ -12,6 +12,7 @@
     <string name="balance_day">Saldo do dia %s</string>
     <string name="content_desc_btn_back">botão voltar</string>
     <string name="content_desc_btn_next">botão avançar</string>
+    <string name="hundred">100%</string>
 
     <!-- Bottom Navigation -->
     <string name="bottom_navigation_home">Home</string>
