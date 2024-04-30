@@ -2,19 +2,14 @@
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.home_invest.builder.HomeBuilder
-import com.example.home_invest.use_cases.extract.ExtractUseCase
-import com.example.home_invest.use_cases.extract.ExtractUseCaseImp
 import com.example.home_invest.use_cases.investments.InvestmentsUseCase
 import com.example.home_invest.use_cases.investments.InvestmentsUseCaseImp
+import com.example.network.data.remote.repository.investments.InvestmentsRepository
 
-<span class="nc" id="L11">class ProductViewModelFactory : ViewModelProvider.Factory {</span>
+<span class="nc" id="L9">class ProductViewModelFactory(private val repository:InvestmentsRepository) : ViewModelProvider.Factory {</span>
     override fun &lt;T : ViewModel&gt; create(modelClass: Class&lt;T&gt;): T {
-<span class="nc" id="L13">        val repositoryInvestments = HomeBuilder.getInvestmentsRepository()</span>
-<span class="nc" id="L14">        val useCaseInvestments: InvestmentsUseCase? =</span>
-<span class="nc bnc" id="L15" title="All 2 branches missed.">            repositoryInvestments?.let { InvestmentsUseCaseImp(it) }</span>
-
-<span class="nc" id="L17">        return ProductViewModel(useCaseInvestments!!) as T</span>
+<span class="nc" id="L11">        val useCaseInvestments = InvestmentsUseCaseImp(repository)</span>
+<span class="nc" id="L12">        return ProductViewModel(useCaseInvestments) as T</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

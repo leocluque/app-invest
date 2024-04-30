@@ -4,20 +4,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.home_invest.builder.HomeBuilder
 import com.example.home_invest.use_cases.balance.BalanceUseCaseImp
+import com.example.network.data.remote.repository.balance.BalanceRepository
 
-<span class="nc" id="L8">class HomeViewModelFactory : ViewModelProvider.Factory {</span>
+<span class="fc" id="L9">class HomeViewModelFactory(private val balanceRepository: BalanceRepository) : ViewModelProvider.Factory {</span>
     override fun &lt;T : ViewModel&gt; create(modelClass: Class&lt;T&gt;): T {
-<span class="nc bnc" id="L10" title="All 2 branches missed.">        if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {</span>
-<span class="nc" id="L11">            val repository = HomeBuilder.getBalanceRepository()</span>
-<span class="nc bnc" id="L12" title="All 2 branches missed.">            val useCase = repository?.let { BalanceUseCaseImp(it) }</span>
-<span class="nc bnc" id="L13" title="All 2 branches missed.">            if (useCase != null) {</span>
-<span class="nc" id="L14">                return HomeViewModel(useCase) as T</span>
-            } else {
-                // Handle the case where repository is null or useCase creation fails
-<span class="nc" id="L17">                throw RuntimeException(&quot;Failed to create HomeViewModel&quot;)</span>
-            }
+<span class="fc bfc" id="L11" title="All 2 branches covered.">        if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {</span>
+<span class="fc" id="L12">            val useCase = BalanceUseCaseImp(balanceRepository)</span>
+<span class="fc" id="L13">            return HomeViewModel(useCase) as T</span>
         }
-<span class="nc" id="L20">        throw IllegalArgumentException(&quot;Unknown ViewModel class: ${modelClass.simpleName}&quot;)</span>
+<span class="fc" id="L15">        throw IllegalArgumentException(&quot;Unknown ViewModel class: ${modelClass.simpleName}&quot;)</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

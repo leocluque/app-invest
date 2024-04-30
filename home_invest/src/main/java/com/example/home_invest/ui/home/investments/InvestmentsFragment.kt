@@ -22,10 +22,10 @@ class InvestmentsFragment : Fragment() {
 
 
     private var binding: FragmentInvestmentsBinding? = null
-    private var adapter: InvestmentsAdapter? = null
-    private var extractAdapter: ExtractAdapter? = null
-    private var viewModel: InvestmentsViewModel? = null
-    private var productViewModel: ProductViewModel? = null
+    internal var adapter: InvestmentsAdapter? = null
+    internal var extractAdapter: ExtractAdapter? = null
+    internal var viewModel: InvestmentsViewModel? = null
+    internal var productViewModel: ProductViewModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -89,13 +89,13 @@ class InvestmentsFragment : Fragment() {
         }
     }
 
-    private fun setAdapter(list: List<ContractedProducts>) {
+   internal fun setAdapter(list: List<ContractedProducts>) {
         adapter = context?.let { InvestmentsAdapter(it) }
         binding?.investimentsRv?.setup(adapter)
         adapter?.list = list
     }
 
-    private fun setExtractAdapter(list: List<ExtractResponse>) {
+    internal fun setExtractAdapter(list: List<ExtractResponse>) {
         extractAdapter = context?.let { ExtractAdapter(it) }
         binding?.extractRv?.setup(extractAdapter)
         extractAdapter?.list = list

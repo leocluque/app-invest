@@ -66,7 +66,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.fragment:fragment-testing:1.6.2")
     implementation("androidx.fragment:fragment-ktx:1.5.3")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
     testImplementation ("org.mockito:mockito-core:5.11.0")
     androidTestImplementation ("org.mockito:mockito-core:5.11.0")
     androidTestImplementation ("androidx.arch.core:core-testing:2.2.0")
@@ -74,6 +74,7 @@ dependencies {
     testImplementation("androidx.fragment:fragment-testing:1.6.2")
     testImplementation ("org.robolectric:robolectric:4.12.1")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0")
+
 
     testImplementation("io.mockk:mockk:1.10.6")
     androidTestImplementation("io.mockk:mockk:1.10.6")

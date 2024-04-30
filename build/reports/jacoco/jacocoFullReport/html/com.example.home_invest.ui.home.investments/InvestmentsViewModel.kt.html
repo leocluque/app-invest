@@ -11,12 +11,12 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-<span class="nc" id="L14">class InvestmentsViewModel(</span>
-<span class="nc" id="L15">    private val extractUseCase: ExtractUseCase</span>
-<span class="nc" id="L16">) : ViewModel() {</span>
+<span class="fc" id="L14">class InvestmentsViewModel(</span>
+<span class="fc" id="L15">    private val extractUseCase: ExtractUseCase</span>
+<span class="fc" id="L16">) : ViewModel() {</span>
 
-<span class="nc" id="L18">    private val _uiEventExtract = MutableSharedFlow&lt;UiEventExtract&gt;()</span>
-<span class="nc" id="L19">    val uiEventExtract: SharedFlow&lt;UiEventExtract&gt; = _uiEventExtract.asSharedFlow()</span>
+<span class="fc" id="L18">    private val _uiEventExtract = MutableSharedFlow&lt;UiEventExtract&gt;()</span>
+<span class="pc" id="L19">    val uiEventExtract: SharedFlow&lt;UiEventExtract&gt; = _uiEventExtract.asSharedFlow()</span>
 
     fun getExtract() {
 <span class="nc" id="L22">        extractUseCase.getExtract().onEach { result -&gt;</span>

@@ -2,16 +2,14 @@
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.home_invest.builder.HomeBuilder
-import com.example.home_invest.use_cases.extract.ExtractUseCase
 import com.example.home_invest.use_cases.extract.ExtractUseCaseImp
+import com.example.network.data.remote.repository.extract.ExtractRepository
 
-<span class="nc" id="L9">class InvestmentsViewModelFactory : ViewModelProvider.Factory {</span>
+<span class="fc" id="L8">class InvestmentsViewModelFactory(private val repository: ExtractRepository) :</span>
+    ViewModelProvider.Factory {
     override fun &lt;T : ViewModel&gt; create(modelClass: Class&lt;T&gt;): T {
-<span class="nc" id="L11">        val extractRepository = HomeBuilder.getExtractRepository()</span>
-<span class="nc bnc" id="L12" title="All 2 branches missed.">        val useCaseExtract: ExtractUseCase? = extractRepository?.let { ExtractUseCaseImp(it) }</span>
-
-<span class="nc" id="L14">        return InvestmentsViewModel(useCaseExtract!!) as T</span>
+<span class="fc" id="L11">        val useCaseExtract = ExtractUseCaseImp(repository)</span>
+<span class="fc" id="L12">        return InvestmentsViewModel(useCaseExtract!!) as T</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
