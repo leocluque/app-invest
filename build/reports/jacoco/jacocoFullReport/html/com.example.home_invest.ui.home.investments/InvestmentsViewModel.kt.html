@@ -19,26 +19,26 @@ import kotlinx.coroutines.flow.onEach
 <span class="pc" id="L19">    val uiEventExtract: SharedFlow&lt;UiEventExtract&gt; = _uiEventExtract.asSharedFlow()</span>
 
     fun getExtract() {
-<span class="nc" id="L22">        extractUseCase.getExtract().onEach { result -&gt;</span>
-<span class="nc" id="L23">            run {</span>
-<span class="nc" id="L24">                when (result) {</span>
-<span class="nc bnc" id="L25" title="All 2 branches missed.">                    is Resource.Success -&gt; {</span>
-<span class="nc" id="L26">                        _uiEventExtract.emit(UiEventExtract.Loading(false))</span>
-<span class="nc" id="L27">                        _uiEventExtract.emit(UiEventExtract.Success(result.data))</span>
+<span class="fc" id="L22">        extractUseCase.getExtract().onEach { result -&gt;</span>
+<span class="fc" id="L23">            run {</span>
+<span class="fc" id="L24">                when (result) {</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">                    is Resource.Success -&gt; {</span>
+<span class="fc" id="L26">                        _uiEventExtract.emit(UiEventExtract.Loading(false))</span>
+<span class="fc" id="L27">                        _uiEventExtract.emit(UiEventExtract.Success(result.data))</span>
                     }
 
-<span class="nc bnc" id="L30" title="All 2 branches missed.">                    is Resource.Loading -&gt; {</span>
-<span class="nc" id="L31">                        _uiEventExtract.emit(UiEventExtract.Loading(true))</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">                    is Resource.Loading -&gt; {</span>
+<span class="fc" id="L31">                        _uiEventExtract.emit(UiEventExtract.Loading(true))</span>
                     }
 
-<span class="nc bnc" id="L34" title="All 2 branches missed.">                    is Resource.Error -&gt; {</span>
-<span class="nc" id="L35">                        _uiEventExtract.emit(UiEventExtract.Loading(false))</span>
-<span class="nc" id="L36">                        _uiEventExtract.emit(UiEventExtract.Error(result.message))</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">                    is Resource.Error -&gt; {</span>
+<span class="fc" id="L35">                        _uiEventExtract.emit(UiEventExtract.Loading(false))</span>
+<span class="fc" id="L36">                        _uiEventExtract.emit(UiEventExtract.Error(result.message))</span>
                     }
                 }
-<span class="nc" id="L39">            }</span>
-<span class="nc" id="L40">        }.launchIn(viewModelScope)</span>
-<span class="nc" id="L41">    }</span>
+<span class="fc" id="L39">            }</span>
+<span class="fc" id="L40">        }.launchIn(viewModelScope)</span>
+<span class="fc" id="L41">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
