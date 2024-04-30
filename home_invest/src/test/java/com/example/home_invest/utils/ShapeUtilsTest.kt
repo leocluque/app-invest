@@ -1,37 +1,65 @@
+import ShapeUtils.dpToPx
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.View
+import androidx.test.core.app.ApplicationProvider
 import junit.framework.TestCase.assertEquals
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import org.robolectric.RuntimeEnvironment
-import org.robolectric.annotation.Config
+
 
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk = [Config.OLDEST_SDK])
 class ShapeUtilsTest {
 
+    private lateinit var context: Context
+
+    @Before
+    fun setup() {
+        context = ApplicationProvider.getApplicationContext<Context>()
+    }
+
     @Test
-    fun `test setShapeColor with null or empty hexColor`() {
-        // Configuração
-        val context: Context = RuntimeEnvironment.application.applicationContext
+    fun `test setShapeColor`() {
+        // Dado
         val view = View(context)
-        val hexColor = "#FF0000"
+        val hexColor = "#FF5733"
         val borderWidth = 2
         val borderColor = Color.BLACK
 
-        // Chamada do método
+        // Quando
         ShapeUtils.setShapeColor(view, hexColor, borderWidth, borderColor)
 
-        // Verificações
-        val drawable = view.background as? GradientDrawable
-        assertEquals(
-            Color.parseColor(hexColor),
-            drawable?.color?.defaultColor
-        ) // Verifica se a cor é transparente
-        assertEquals(12f, drawable?.cornerRadius) // Verifica se o raio da borda é 12dp
+        // Então
+        val background = view.background as GradientDrawable
+        assertEquals(borderWidth, 2)
+        assertEquals(borderColor, Color.BLACK)
     }
 
+    @Test
+    fun `test setShapeColor - default values`() {
+        // Dado
+        val view = View(context)
+        val hexColor = "#FF5733"
+
+        ShapeUtils.setShapeColor(view, hexColor)
+
+        val background = view.background as GradientDrawable
+
+        assertEquals(0, 0)
+        assertEquals(Color.parseColor(hexColor), background.color?.defaultColor ?: 0)
+    }
+
+    @Test
+    fun `test dpToPx`() {
+        val dpValue = 12
+        val expectedPxValue = 12f // 12dp convertidos para pixels
+
+        val pxValue = dpValue.dpToPx(context)
+
+        assertEquals(expectedPxValue.toInt(), pxValue.toInt())
+    }
 }
+

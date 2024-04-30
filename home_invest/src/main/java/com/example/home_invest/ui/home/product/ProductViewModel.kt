@@ -1,9 +1,8 @@
 package com.example.home_invest.ui.home.product
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.home_invest.ui.home.investments.UiEventExtract
 import com.example.home_invest.ui.home.investments.UiEventInvestments
 import com.example.home_invest.use_cases.investments.InvestmentsUseCase
 import com.example.network.Resource
@@ -18,8 +17,8 @@ class ProductViewModel(
     private val investmentsUseCase: InvestmentsUseCase,
 ) : ViewModel() {
 
-    private val _uiEventInvestments = MutableLiveData<UiEventInvestments>()
-    val uiEventInvestments: LiveData<UiEventInvestments> = _uiEventInvestments
+    private val _uiEventInvestments = MutableSharedFlow<UiEventInvestments>()
+    val uiEventInvestments: SharedFlow<UiEventInvestments> = _uiEventInvestments.asSharedFlow()
     private var listProducts = mutableListOf<ContractedProducts>()
 
     fun getInvestments() {
@@ -27,17 +26,17 @@ class ProductViewModel(
             run {
                 when (result) {
                     is Resource.Success -> {
-                        _uiEventInvestments.postValue(UiEventInvestments.Loading(false))
-                        _uiEventInvestments.postValue(UiEventInvestments.Success(result.data))
+                        _uiEventInvestments.emit(UiEventInvestments.Loading(false))
+                        _uiEventInvestments.emit(UiEventInvestments.Success(result.data))
                     }
 
                     is Resource.Loading -> {
-                        _uiEventInvestments.postValue(UiEventInvestments.Loading(true))
+                        _uiEventInvestments.emit(UiEventInvestments.Loading(true))
                     }
 
                     is Resource.Error -> {
-                        _uiEventInvestments.postValue(UiEventInvestments.Loading(false))
-                        _uiEventInvestments.postValue(UiEventInvestments.Error(result.message))
+                        _uiEventInvestments.emit(UiEventInvestments.Loading(false))
+                        _uiEventInvestments.emit(UiEventInvestments.Error(result.message))
                     }
                 }
             }

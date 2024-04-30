@@ -21,6 +21,7 @@ import com.example.home_invest.ui.extensions.setVisible
 import com.example.home_invest.ui.home.investments.InvestmentsFragment
 import com.example.home_invest.ui.home.investments.UiEventInvestments
 import com.example.network.data.response.ContractedProducts
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
@@ -58,14 +59,13 @@ class ProductFragment : Fragment() {
 
     private fun setObservables() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel?.uiEventInvestments?.observe(viewLifecycleOwner) { event ->
+            viewModel?.uiEventInvestments?.collectLatest { event ->
                 when (event) {
                     is UiEventInvestments.Success -> {
                         setComponent(
                             event.investments.totalInvested,
                             event.investments.contractedProducts
-                        )
-                    }
+                        )                    }
 
                     is UiEventInvestments.Loading -> {
                         //  nothing

@@ -54,7 +54,7 @@ class InvestmentsFragment : Fragment() {
 
     private fun setObservables() {
         viewLifecycleOwner.lifecycleScope.launch {
-            productViewModel?.uiEventInvestments?.observeForever() { event ->
+            productViewModel?.uiEventInvestments?.collectLatest { event ->
                 when (event) {
                     is UiEventInvestments.Success -> {
                         setAdapter(event.investments.contractedProducts)

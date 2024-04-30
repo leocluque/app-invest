@@ -19,7 +19,7 @@ object ShapeUtils {
         view?.background = drawable
     }
 
-    private fun Int.dpToPx(context: Context): Float {
+    internal fun Int.dpToPx(context: Context): Float {
         return TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
             this.toFloat(),
