@@ -8,6 +8,10 @@ android {
     namespace = "com.example.app_invest"
     compileSdk = 34
 
+    testCoverage {
+        jacocoVersion = "0.8.5"
+    }
+
     defaultConfig {
         applicationId = "com.example.app_invest"
         minSdk = 24
@@ -30,7 +34,8 @@ android {
             )
         }
         debug {
-            isTestCoverageEnabled = true
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
         }
     }
     compileOptions {
@@ -54,34 +59,6 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-}
-
-tasks.register("jacocoTestReport", JacocoReport::class) {
-    dependsOn("testDebugUnitTest")
-
-    reports {
-        xml.required = true
-        html.required = true
-    }
-
-    val fileFilter = listOf(
-        "**/R.class",
-        "**/R$*.class",
-        "**/BuildConfig.*",
-        "**/Manifest*.*",
-        "**/*Test*.*",
-        "android/**/*.*"
-    )
-
-    val debugTree = project.fileTree(mapOf(
-        "dir" to "${project.buildDir}/intermediates/javac/debug",
-        "excludes" to fileFilter
-    ))
-    val mainSrc = "${project.projectDir}/src/main/java"
-
-    sourceDirectories.setFrom(files(mainSrc))
-    classDirectories.setFrom(files(debugTree))
-    executionData.setFrom(files("${project.buildDir}/jacoco/testDebugUnitTest.exec"))
 }
 
 dependencies {

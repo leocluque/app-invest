@@ -6,23 +6,25 @@ import android.view.View
 
 object ShapeUtils {
 
-    fun setShapeColor(view: View, hexColor: String?, borderWidth: Int = 0, borderColor: Int = Color.TRANSPARENT) {
+    fun setShapeColor(view: View?, hexColor: String?, borderWidth: Int = 0, borderColor: Int = Color.TRANSPARENT) {
         val color = Color.parseColor(hexColor)
 
-        val drawable = GradientDrawable()
-        drawable.shape = GradientDrawable.RECTANGLE
-        drawable.setColor(color)
-        drawable.setStroke(borderWidth, borderColor)
-        drawable.cornerRadius = 12.dpToPx(view.context).toFloat()
+        val drawable = GradientDrawable().apply {
+            shape = GradientDrawable.RECTANGLE
+            setColor(color)
+            setStroke(borderWidth, borderColor)
+            cornerRadius = view?.context?.let { 12.dpToPx(it) } ?: 12f
+        }
 
-        view.background = drawable
+        view?.background = drawable
     }
 
-    private fun Int.dpToPx(context: Context): Int {
+    private fun Int.dpToPx(context: Context): Float {
         return TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
             this.toFloat(),
             context.resources.displayMetrics
-        ).toInt()
+        )
     }
 }
+

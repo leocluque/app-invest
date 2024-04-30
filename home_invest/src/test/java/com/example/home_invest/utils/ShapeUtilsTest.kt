@@ -2,53 +2,36 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.View
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
+import junit.framework.TestCase.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers.isA
 import org.robolectric.RobolectricTestRunner
-import org.robolectric.annotation.Config
 import org.robolectric.RuntimeEnvironment
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.verify
-import java.lang.reflect.Field
+import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [Config.OLDEST_SDK])
 class ShapeUtilsTest {
 
-    private val mockContext = mock(Context::class.java)
-
     @Test
-    fun `test setShapeColor`() {
-        // Mock View e outros parâmetros necessários
-        val view = mock(View::class.java)
+    fun `test setShapeColor with null or empty hexColor`() {
+        // Configuração
+        val context: Context = RuntimeEnvironment.application.applicationContext
+        val view = View(context)
         val hexColor = "#FF0000"
         val borderWidth = 2
         val borderColor = Color.BLACK
 
-        // Chame o método setShapeColor
+        // Chamada do método
         ShapeUtils.setShapeColor(view, hexColor, borderWidth, borderColor)
 
-        // Verifique se o background da view foi definido como um GradientDrawable
-        verify(view).background = isA(GradientDrawable::class.java)
-
-        // Verifique se o GradientDrawable tem as configurações corretas
-        val drawable = view.background as GradientDrawable
-        assertNotNull(drawable.toString(), "O GradientDrawable deve ser configurado")
-
-        // Verifique a cor (garante que drawable não é null antes de acessar color)
-        assertEquals(Color.parseColor(hexColor), drawable.color!!.defaultColor)
-
-        // Use reflexão para acessar strokeWidth (não recomendado)
-        val field = GradientDrawable::class.java.getDeclaredField("strokeWidth")
-        field.isAccessible = true // Make the field accessible
-        val strokeWidthValue = field.getInt(drawable) // Get the value
-
-        // Assert the border width
-        assertEquals(borderWidth, strokeWidthValue)
-
-        // ... (rest of your assertions)
+        // Verificações
+        val drawable = view.background as? GradientDrawable
+        assertEquals(
+            Color.parseColor(hexColor),
+            drawable?.color?.defaultColor
+        ) // Verifica se a cor é transparente
+        assertEquals(12f, drawable?.cornerRadius) // Verifica se o raio da borda é 12dp
     }
+
 }

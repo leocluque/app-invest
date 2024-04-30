@@ -21,6 +21,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestCoroutineScheduler
 import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.Before
 import org.junit.Test
@@ -45,7 +46,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `getBalance_Success_EmitsLoadingTrueThenSuccess`() = runBlockingTest {
+    fun `getBalance_Success_EmitsLoadingTrueThenSuccess`() = runTest {
         val expectedBalance = 1000.00
         val expectedResponse = BalanceResponse(expectedBalance)
         coEvery { balanceUseCase.getBalance() } returns flow {
@@ -71,7 +72,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `getBalance_Loading_EmitsLoadingTrue`() = runBlockingTest {
+    fun `getBalance_Loading_EmitsLoadingTrue`() = runTest {
         coEvery { balanceUseCase.getBalance() } returns flow { emit(Resource.Loading) }
 
         launchedJob = launch {
@@ -88,7 +89,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `getBalance_Error_EmitsLoadingFalseThenError`() = runBlockingTest {
+    fun `getBalance_Error_EmitsLoadingFalseThenError`() = runTest {
         val errorMessage = "Network Error"
         coEvery { balanceUseCase.getBalance() } returns flow { emit(Resource.Error(errorMessage)) }
 
@@ -107,7 +108,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `getBalance_MultipleEmissions_EmitsAllEvents`() = runBlockingTest {
+    fun `getBalance_MultipleEmissions_EmitsAllEvents`() = runTest {
         val expectedBalance = 1000.00
         val expectedResponse = BalanceResponse(expectedBalance)
         coEvery { balanceUseCase.getBalance() } returns flow {
@@ -130,12 +131,12 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `getBalance_CancelCollection_DoesNotCrash`() = runBlockingTest {
+    fun `getBalance_CancelCollection_DoesNotCrash`() = runTest {
         coEvery { balanceUseCase.getBalance() } returns emptyFlow()
     }
 
     @Test
-    fun `getBalance_ViewModelScopeException_EmitsError`() = runBlockingTest {
+    fun `getBalance_ViewModelScopeException_EmitsError`() = runTest {
         val exception = RuntimeException("Unexpected error")
         coEvery { balanceUseCase.getBalance() } returns flow { emit(Resource.Error(exception.message.toString())) }
 

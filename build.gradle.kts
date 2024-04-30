@@ -19,3 +19,5 @@ tasks {
         delete(rootProject.buildDir)
     }
 }
+
+apply(from = "${project.rootDir}/tools/jacoco.gradle")
