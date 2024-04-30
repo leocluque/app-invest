@@ -1,11 +1,11 @@
 package com.example.home_invest.ui.home.investments
 
+import ShapeUtils.setShapeColor
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.home_invest.R
 import com.example.home_invest.databinding.ItemInvestmentsBinding
 import com.example.home_invest.ui.extensions.formatCurrencyBRL
 import com.example.network.data.response.ContractedProducts
@@ -51,6 +51,7 @@ class InvestmentsAdapter(private val context: Context) :
                 percentageTv.text = "$percentage %"
                 nameInvestTv.text = item.productName
                 balanceValueTv.text = item.totalInvested.toFloat().formatCurrencyBRL()
+                setShapeColor(bgColorIv, item.color)
             }
         }
     }

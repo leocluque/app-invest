@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.home_invest.ui.home.investments.UiEventInvestments
 import com.example.home_invest.use_cases.investments.InvestmentsUseCase
 import com.example.network.Resource
+import com.example.network.data.response.ContractedProducts
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -19,6 +20,7 @@ class ProductViewModel(
 
     private val _uiEventInvestments = MutableLiveData<UiEventInvestments>()
     val uiEventInvestments: LiveData<UiEventInvestments> = _uiEventInvestments
+    private var listProducts = mutableListOf<ContractedProducts>()
 
     fun getInvestments() {
         investmentsUseCase.getInvestments().onEach { result ->
@@ -42,4 +44,6 @@ class ProductViewModel(
 
         }.launchIn(viewModelScope)
     }
+
+    fun getListInvestments() = listProducts
 }

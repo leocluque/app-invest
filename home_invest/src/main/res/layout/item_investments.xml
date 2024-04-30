@@ -8,7 +8,7 @@
     android:background="@drawable/bg_card_invest">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/bgColorIv"
         android:layout_width="@dimen/default_70dp"
         android:layout_height="@dimen/default_24dp"
         android:layout_marginStart="@dimen/default_16dp"
@@ -23,10 +23,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toBottomOf="@+id/bgColorIv"
+        app:layout_constraintEnd_toEndOf="@+id/bgColorIv"
+        app:layout_constraintStart_toStartOf="@+id/bgColorIv"
+        app:layout_constraintTop_toTopOf="@+id/bgColorIv"
         tools:text="60%" />
 
     <TextView
@@ -36,10 +36,10 @@
         android:layout_marginStart="@dimen/default_8dp"
         android:layout_marginEnd="@dimen/default_8dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintBottom_toBottomOf="@+id/bgColorIv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/bgColorIv"
+        app:layout_constraintTop_toTopOf="@+id/bgColorIv"
         tools:text="Fundos de Investimentos" />
 
 
@@ -49,8 +49,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_16dp"
         android:text="@string/total_balance"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintStart_toStartOf="@+id/bgColorIv"
+        app:layout_constraintTop_toBottomOf="@+id/bgColorIv" />
 
 
     <TextView
@@ -60,7 +60,7 @@
         android:layout_marginTop="@dimen/default_16dp"
         android:layout_marginEnd="@dimen/default_16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/bgColorIv"
         tools:text="R$ 96.000,00" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

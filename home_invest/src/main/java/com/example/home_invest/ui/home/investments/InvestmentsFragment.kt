@@ -10,6 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import com.example.home_invest.databinding.FragmentInvestmentsBinding
 import com.example.home_invest.ui.extensions.setup
 import com.example.home_invest.ui.home.extract.ExtractAdapter
+import com.example.home_invest.ui.home.product.ProductViewModel
+import com.example.home_invest.ui.home.product.ProductViewModelFactory
 import com.example.network.data.response.ContractedProducts
 import com.example.network.data.response.ExtractResponse
 import kotlinx.coroutines.flow.collectLatest
@@ -22,6 +24,7 @@ class InvestmentsFragment : Fragment() {
     private var adapter: InvestmentsAdapter? = null
     private var extractAdapter: ExtractAdapter? = null
     private var viewModel: InvestmentsViewModel? = null
+    private lateinit var productViewModel: ProductViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +34,13 @@ class InvestmentsFragment : Fragment() {
         return binding?.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val factory = ProductViewModelFactory()
+        productViewModel =
+            ViewModelProvider(requireActivity(), factory)[ProductViewModel::class.java]
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val factory = InvestmentsViewModelFactory()
@@ -38,24 +48,23 @@ class InvestmentsFragment : Fragment() {
         binding?.investimentsRv?.isNestedScrollingEnabled = false
         binding?.extractRv?.isNestedScrollingEnabled = false
         setObservables()
-        viewModel?.getInvestments()
         viewModel?.getExtract()
     }
 
     private fun setObservables() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel?.uiEventInvestments?.collectLatest { event ->
+            productViewModel.uiEventInvestments.observeForever() { event ->
                 when (event) {
                     is UiEventInvestments.Success -> {
                         setAdapter(event.investments.contractedProducts)
                     }
 
                     is UiEventInvestments.Loading -> {
-                        // nothing
+                        //  nothing
                     }
 
                     is UiEventInvestments.Error -> {
-                        // nothing
+                        //  nothing
                     }
                 }
             }

@@ -29,7 +29,7 @@ class ProductFragment : Fragment() {
     private var viewPagerAdapter: CustomViewPager? = null
     private val viewModel: ProductViewModel by lazy {
         val factory = ProductViewModelFactory()
-        ViewModelProvider(this, factory)[ProductViewModel::class.java]
+        ViewModelProvider(requireActivity(), factory)[ProductViewModel::class.java]
     }
     private val fragments = listOf(
         InvestmentsFragment(),

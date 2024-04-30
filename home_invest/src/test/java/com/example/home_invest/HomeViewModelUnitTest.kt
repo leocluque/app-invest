@@ -1,7 +1,7 @@
 package com.example.home_invest
 
-import com.example.home_invest.ui.home.HomeViewModel
-import com.example.home_invest.ui.home.UiEventHome
+import com.example.home_invest.ui.home.home.HomeViewModel
+import com.example.home_invest.ui.home.home.UiEventHome
 import com.example.home_invest.use_cases.balance.BalanceUseCase
 import com.example.network.Resource
 import com.example.network.data.response.BalanceResponse

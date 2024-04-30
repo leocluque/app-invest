@@ -12,38 +12,11 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class InvestmentsViewModel(
-    private val investmentsUseCase: InvestmentsUseCase,
     private val extractUseCase: ExtractUseCase
 ) : ViewModel() {
 
-    private val _uiEventInvestments = MutableSharedFlow<UiEventInvestments>()
-    val uiEventInvestments: SharedFlow<UiEventInvestments> = _uiEventInvestments.asSharedFlow()
     private val _uiEventExtract = MutableSharedFlow<UiEventExtract>()
     val uiEventExtract: SharedFlow<UiEventExtract> = _uiEventExtract.asSharedFlow()
-
-    fun getInvestments() {
-        investmentsUseCase.getInvestments().onEach { result ->
-            run {
-                when (result) {
-                    is Resource.Success -> {
-                        _uiEventInvestments.emit(UiEventInvestments.Loading(false))
-                        _uiEventInvestments.emit(UiEventInvestments.Success(result.data))
-                    }
-
-                    is Resource.Loading -> {
-                        _uiEventInvestments.emit(UiEventInvestments.Loading(true))
-                    }
-
-                    is Resource.Error -> {
-                        _uiEventInvestments.emit(UiEventInvestments.Loading(false))
-                        _uiEventInvestments.emit(UiEventInvestments.Error(result.message))
-                    }
-                }
-            }
-
-        }.launchIn(viewModelScope)
-    }
-
 
     fun getExtract() {
         extractUseCase.getExtract().onEach { result ->

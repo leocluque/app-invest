@@ -1,6 +1,6 @@
 package com.example.home_invest
 
-import com.example.home_invest.ui.home.UiEventHome
+import com.example.home_invest.ui.home.home.UiEventHome
 import com.example.network.data.response.BalanceResponse
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
