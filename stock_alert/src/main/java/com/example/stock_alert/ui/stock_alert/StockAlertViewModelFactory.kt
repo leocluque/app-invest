@@ -2,14 +2,17 @@ package com.example.stock_alert.ui.stock_alert
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.stock_alert.builder.StockAlertBuilder
-import com.example.stock_alert.use_case.stock_alert.StockAlertUseCase
+import com.example.network.data.remote.repository.stock.StockAlertRepository
 import com.example.stock_alert.use_case.stock_alert.StockAlertUseCaseImp
 
-class StockAlertViewModelFactory : ViewModelProvider.Factory {
+class StockAlertViewModelFactory(private val repository: StockAlertRepository) :
+    ViewModelProvider.Factory {
+
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        val repository = StockAlertBuilder.getStockAlertRepository()
-        val useCase: StockAlertUseCase? = repository?.let { StockAlertUseCaseImp(it) }
-        return useCase?.let { StockAlertViewModel(it) } as T
+        if (modelClass.isAssignableFrom(StockAlertViewModel::class.java)) {
+            val useCase = StockAlertUseCaseImp(repository)
+            return StockAlertViewModel(useCase) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.simpleName}")
     }
 }

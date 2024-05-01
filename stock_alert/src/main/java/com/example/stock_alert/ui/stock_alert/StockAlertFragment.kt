@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.network.data.request.CreateProductAlertRequest
 import com.example.network.data.response.ProductsResponse
 import com.example.stock_alert.R
+import com.example.stock_alert.builder.StockAlertBuilder
 import com.example.stock_alert.databinding.FragmentStockAlertBinding
 import com.example.stock_alert.ui.extensions.formatCurrencyBRL
 import com.example.stock_alert.ui.extensions.setVisible
@@ -35,8 +36,9 @@ class StockAlertFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val factory = StockAlertViewModelFactory()
-        viewModel = ViewModelProvider(this, factory)[StockAlertViewModel::class.java]
+        val factory = StockAlertBuilder.getStockAlertRepository()
+            ?.let { StockAlertViewModelFactory(it) }
+        viewModel = factory?.let { ViewModelProvider(this, it) }?.get(StockAlertViewModel::class.java)
         setView()
         setListeners()
         setObservables()

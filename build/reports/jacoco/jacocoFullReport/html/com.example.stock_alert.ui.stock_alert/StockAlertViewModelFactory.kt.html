@@ -2,15 +2,18 @@
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.stock_alert.builder.StockAlertBuilder
-import com.example.stock_alert.use_case.stock_alert.StockAlertUseCase
+import com.example.network.data.remote.repository.stock.StockAlertRepository
 import com.example.stock_alert.use_case.stock_alert.StockAlertUseCaseImp
 
-<span class="nc" id="L9">class StockAlertViewModelFactory : ViewModelProvider.Factory {</span>
+<span class="fc" id="L8">class StockAlertViewModelFactory(private val repository: StockAlertRepository) :</span>
+    ViewModelProvider.Factory {
+
     override fun &lt;T : ViewModel&gt; create(modelClass: Class&lt;T&gt;): T {
-<span class="nc" id="L11">        val repository = StockAlertBuilder.getStockAlertRepository()</span>
-<span class="nc bnc" id="L12" title="All 2 branches missed.">        val useCase: StockAlertUseCase? = repository?.let { StockAlertUseCaseImp(it) }</span>
-<span class="nc bnc" id="L13" title="All 2 branches missed.">        return useCase?.let { StockAlertViewModel(it) } as T</span>
+<span class="fc bfc" id="L12" title="All 2 branches covered.">        if (modelClass.isAssignableFrom(StockAlertViewModel::class.java)) {</span>
+<span class="fc" id="L13">            val useCase = StockAlertUseCaseImp(repository)</span>
+<span class="fc" id="L14">            return StockAlertViewModel(useCase) as T</span>
+        }
+<span class="fc" id="L16">        throw IllegalArgumentException(&quot;Unknown ViewModel class: ${modelClass.simpleName}&quot;)</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
