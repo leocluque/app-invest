@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipToPadding="false"
+    android:id="@+id/nestedSv"
     android:fillViewport="true"
     tools:context=".ui.home.product.ProductFragment">
 
@@ -85,7 +86,7 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/productsVp"
             android:layout_width="match_parent"
-            android:layout_height="1000dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/default_24dp"
             android:clipToPadding="false"
             app:layout_constraintBottom_toBottomOf="parent"

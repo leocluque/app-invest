@@ -82,6 +82,11 @@ class ProductFragment : Fragment() {
     private fun setView() {
         binding?.initialPageTv?.text = getString(R.string.page_initial)
         binding?.lastPageTv?.text = fragments.size.toString()
+        binding?.productsVp?.post {
+            val layoutParams =  binding?.productsVp?.layoutParams
+            layoutParams?.height = binding?.nestedSv?.height?.times(3)
+            binding?.productsVp?.layoutParams = layoutParams
+        }
     }
 
     private fun setStateViewError() {
