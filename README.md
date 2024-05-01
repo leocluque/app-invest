@@ -110,8 +110,12 @@ git clone https://github.com/leocluque/app-invest.git
 
 O projeto possui uma cobertura de testes unitários de aproximadamente 90%.
 
-![cobertura_de_testes](imagens/cobertura_de_testes.png)
+Para emitir um relatorio use 
+```bash
+./gradlew clean  jacocoFullReport
+```
 
+![cobertura_de_testes](imagens/cobertura_de_testes.png)
 
 ### Previas
 
