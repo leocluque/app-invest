@@ -5,7 +5,6 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("jacoco")
 }
-apply(from = "${project.rootDir}/tools/jacoco.gradle")
 
 android {
     namespace = "com.example.network"
@@ -17,7 +16,7 @@ android {
         }
     }
     testCoverage {
-        jacocoVersion = "0.8.5"
+        jacocoVersion = "0.8.6"
     }
 
     defaultConfig {

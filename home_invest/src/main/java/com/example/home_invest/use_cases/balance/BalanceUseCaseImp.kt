@@ -16,8 +16,6 @@ class BalanceUseCaseImp(private val repository: BalanceRepository) : BalanceUseC
             emit(Resource.Loading)
             val data = repository.getBalance()
             emit(Resource.Success(data))
-        } catch (e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: NetworkConstants.UNKNOW_ERROR))
         } catch (e: IOException) {
             emit(Resource.Error(NetworkConstants.INTERNET_ERROR))
         }

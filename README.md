@@ -49,6 +49,7 @@ Para rodar o aplicativo localmente, é necessário configurar um backend local. 
 - Java JDK instalado na sua máquina.
 - Kotlin instalado na sua máquina.
 - Gradle instalado na sua máquina.
+- Variável de ambiente `MONGO_PW` configurada com o valor fornecido por e-mail.
 
 ### Passo a Passo
 
@@ -104,6 +105,13 @@ git clone https://github.com/leocluque/app-invest.git
 8. Execute o aplicativo no dispositivo/emulador selecionado.
 
 9. Explore as funcionalidades do aplicativo diretamente no dispositivo/emulador.
+
+### Cobertura dos Testes Unitários
+
+O projeto possui uma cobertura de testes unitários de aproximadamente 90%.
+
+![cobertura_de_testes](imagens/cobertura_de_testes.png)
+
 
 ### Previas
 

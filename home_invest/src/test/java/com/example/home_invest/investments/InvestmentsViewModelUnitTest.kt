@@ -71,6 +71,29 @@ class InvestmentsViewModelUnitTest {
     }
 
     @Test
+    fun `getExtract_Error_EmitsErrorThenSuccess`() = runTest {
+        coEvery { extractUseCase.getExtract() } returns flow {
+            emit(
+                Resource.Error(
+                    "Error"
+                )
+            )
+        }
+        launchedJob = launch {
+            viewModel.uiEventExtract.collectLatest { event ->
+                when (event) {
+                    is UiEventExtract.Loading -> assert(false)
+                    is UiEventExtract.Success ->assert(false)
+                    is UiEventExtract.Error -> assertEquals("Error", event.error)
+                }
+            }
+        }
+
+        viewModel.getExtract()
+        launchedJob.cancel()
+    }
+
+    @Test
     fun `getExtract_Loading_EmitsLoadingTrue`() = runTest {
         coEvery { extractUseCase.getExtract() } returns flow { emit(Resource.Loading) }
 

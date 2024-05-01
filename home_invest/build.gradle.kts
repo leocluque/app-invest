@@ -14,7 +14,7 @@ android {
         }
     }
     testCoverage {
-        jacocoVersion = "0.8.5"
+        jacocoVersion = "0.8.6"
     }
 
     defaultConfig {

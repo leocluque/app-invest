@@ -1,3 +1,4 @@
+import com.android.build.gradle.internal.crash.afterEvaluate
 
 buildscript {
     val coroutinesVersion by extra("1.7.1")
@@ -13,6 +14,18 @@ plugins {
     id("com.android.library") version "7.4.2" apply false
     id("jacoco")
 }
+
+subprojects {
+    afterEvaluate { subproject ->
+        val projectName = subproject.name
+
+        println("Applying JaCoCo for module-> $projectName")
+        subproject.apply {
+            from("$subproject.rootDir/scripts/coverage.gradle")
+        }
+    }
+}
+
 
 tasks {
     register("clean", Delete::class) {

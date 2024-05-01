@@ -18,8 +18,6 @@ class StockAlertUseCaseImp(private val repository: StockAlertRepository) : Stock
             emit(Resource.Loading)
             val data = repository.getAllAlerts()
             emit(Resource.Success(data))
-        } catch (e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: NetworkConstants.UNKNOW_ERROR))
         } catch (e: IOException) {
             emit(Resource.Error(NetworkConstants.INTERNET_ERROR))
         }
@@ -31,8 +29,6 @@ class StockAlertUseCaseImp(private val repository: StockAlertRepository) : Stock
                 emit(Resource.Loading)
                 val data = repository.createAlert(request)
                 emit(Resource.Success(data))
-            } catch (e: HttpException) {
-                emit(Resource.Error(e.localizedMessage ?: NetworkConstants.UNKNOW_ERROR))
             } catch (e: IOException) {
                 emit(Resource.Error(NetworkConstants.INTERNET_ERROR))
             }
@@ -44,8 +40,6 @@ class StockAlertUseCaseImp(private val repository: StockAlertRepository) : Stock
                 emit(Resource.Loading)
                 val data = repository.updateAlert(request)
                 emit(Resource.Success(data))
-            } catch (e: HttpException) {
-                emit(Resource.Error(e.localizedMessage ?: NetworkConstants.UNKNOW_ERROR))
             } catch (e: IOException) {
                 emit(Resource.Error(NetworkConstants.INTERNET_ERROR))
             }
@@ -57,8 +51,6 @@ class StockAlertUseCaseImp(private val repository: StockAlertRepository) : Stock
                 emit(Resource.Loading)
                 val data = repository.deleteAlert(request)
                 emit(Resource.Success(data))
-            } catch (e: HttpException) {
-                emit(Resource.Error(e.localizedMessage ?: NetworkConstants.UNKNOW_ERROR))
             } catch (e: IOException) {
                 emit(Resource.Error(NetworkConstants.INTERNET_ERROR))
             }

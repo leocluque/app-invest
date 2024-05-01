@@ -3,13 +3,15 @@
  */
 def ignoredByJacoco = []
 def fileFilter = ['**/*ViewModel*.*',
-    '**/*viewModel*.*',
-    '**/*viewmodel*.*',
-    '**/*Viewmodel*.*',
-    '**/*Util*.*',
-    '**/*Utils*.*',
-    '**/*util*.*',
-    '**/*utils*.*']
+                  '**/*viewModel*.*',
+                  '**/*viewmodel*.*',
+                  '**/*Viewmodel*.*',
+                  '**/*UseCase*.*',
+                  '**/*Repository*.*',
+                  '**/*Service*.*',
+                  '**/*service*.*',
+                  '**/*Builder*.*'
+]
 def buildKotlinClasses = "/tmp/kotlin-classes/debug"
 def buildJavaClasses = "/intermediates/javac/debug/classes"
 def testExecutionFile = "/outputs/unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec"
@@ -19,47 +21,47 @@ def testExecutionFile = "/outputs/unit_test_code_coverage/debugUnitTest/testDebu
  */
 subprojects { project ->
     def projectName = project.name
-            def projectBuildFolder = project.buildDir
-            def projectFolder = project.projectDir
+    def projectBuildFolder = project.buildDir
+    def projectFolder = project.projectDir
 
 
-            // Apply Jacoco only if the project is not in the ignore list
-            if (!ignoredByJacoco.contains(projectName)) {
-                apply plugin: 'jacoco'
-                jacoco {
-                    version '0.8.5'
+    // Apply Jacoco only if the project is not in the ignore list
+    if (!ignoredByJacoco.contains(projectName)) {
+        apply plugin: 'jacoco'
+        jacoco {
+            version '0.8.6'
+        }
+
+        task jacocoReport(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
+            group = 'Reporting'
+            description = 'Generate Jacoco coverage reports after running tests.'
+
+            reports {
+                xml {
+                    enabled true
                 }
-
-                task jacocoReport(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
-                    group = 'Reporting'
-                    description = 'Generate Jacoco coverage reports after running tests.'
-
-                    reports {
-                        xml {
-                            enabled true
-                        }
-                        html {
-                            enabled true
-                        }
-                    }
-
-
-                    def debugTree = fileTree('directory does not exists') // I know it's ugly :)
-
-                    def buildDebug = ["$projectBuildFolder" + "$buildKotlinClasses",
-                        "$projectBuildFolder" + "$buildJavaClasses"]
-
-                    buildDebug.each { classPath ->
-                        debugTree += fileTree(dir: classPath, includes: fileFilter)
-                    }
-
-                    def mainSrc = "$projectFolder/src/main/java"
-                    sourceDirectories.from = files([mainSrc])
-                    classDirectories.from = files([debugTree])
-                    executionData.from = files("$projectBuildFolder" + "$testExecutionFile")
-
+                html {
+                    enabled true
                 }
             }
+
+
+            def debugTree = fileTree('directory does not exists') // I know it's ugly :)
+
+            def buildDebug = ["$projectBuildFolder" + "$buildKotlinClasses",
+                              "$projectBuildFolder" + "$buildJavaClasses"]
+
+            buildDebug.each { classPath ->
+                debugTree += fileTree(dir: classPath, includes: fileFilter)
+            }
+
+            def mainSrc = "$projectFolder/src/main/java"
+            sourceDirectories.from = files([mainSrc])
+            classDirectories.from = files([debugTree])
+            executionData.from = files("$projectBuildFolder" + "$testExecutionFile")
+
+        }
+    }
 }
 
 
@@ -89,7 +91,7 @@ task jacocoFullReport(name: 'jacocoFullReport', type: JacocoReport, group: 'Cove
 
 
         def buildDebug = ["$prj.buildDir" + "$buildKotlinClasses",
-            "$prj.buildDir" + "$buildJavaClasses"]
+                          "$prj.buildDir" + "$buildJavaClasses"]
 
         buildDebug.each { classPath ->
             tree += fileTree(dir: classPath, includes: fileFilter)

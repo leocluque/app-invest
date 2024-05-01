@@ -20,9 +20,9 @@ import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
-    var binding: FragmentHomeBinding? = null
-    var viewPagerAdapter: CustomViewPager? = null
-     var homeViewModel: HomeViewModel? = null
+    private var binding: FragmentHomeBinding? = null
+    private var viewPagerAdapter: CustomViewPager? = null
+    private var homeViewModel: HomeViewModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
         homeViewModel?.getBalance()
     }
 
-    fun setObservables() {
+    private fun setObservables() {
         viewLifecycleOwner.lifecycleScope.launch {
             homeViewModel?.uiEvent?.collectLatest { event ->
                 when (event) {
@@ -63,16 +63,16 @@ class HomeFragment : Fragment() {
         }
     }
 
-    internal fun setView() {
+    private fun setView() {
         val fragments = listOf(ProductFragment(), WalletsFragment())
         viewPagerAdapter?.addFrag(fragments)
     }
 
-    fun setBalance(balance: String) {
+    private fun setBalance(balance: String) {
         binding?.balanceValueTv?.text = balance
     }
 
-    fun setLoading(isLoading: Boolean) {
+    private fun setLoading(isLoading: Boolean) {
         binding?.loadingPb?.setVisible(isLoading)
         binding?.homeContentCl?.setVisible(!isLoading)
     }
@@ -87,7 +87,7 @@ class HomeFragment : Fragment() {
         binding?.pagesVp?.adapter = viewPagerAdapter
     }
 
-    fun setListeners() {
+    private fun setListeners() {
         binding?.apply {
 
             tabs.setWalletState {

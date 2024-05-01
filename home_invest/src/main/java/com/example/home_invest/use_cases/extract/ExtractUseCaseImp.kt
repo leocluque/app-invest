@@ -16,8 +16,6 @@ class ExtractUseCaseImp(private val repository: ExtractRepository) : ExtractUseC
             emit(Resource.Loading)
             val data = repository.getExtract()
             emit(Resource.Success(data))
-        } catch (e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: NetworkConstants.UNKNOW_ERROR))
         } catch (e: IOException) {
             emit(Resource.Error(NetworkConstants.INTERNET_ERROR))
         }

@@ -1,14 +1,17 @@
 package com.example.network.balance
 
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.network.data.remote.repository.balance.BalanceRepositoryImp
 import com.example.network.data.remote.service.BalanceService
 import com.example.network.data.response.BalanceResponse
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 
+@RunWith(AndroidJUnit4::class)
 class BalanceRepositoryImpTest {
 
     @Test
