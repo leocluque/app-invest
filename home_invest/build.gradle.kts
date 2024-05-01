@@ -51,6 +51,7 @@ android {
 
 dependencies {
 
+    // Default
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
@@ -74,11 +75,8 @@ dependencies {
     testImplementation("androidx.fragment:fragment-testing:1.6.2")
     testImplementation ("org.robolectric:robolectric:4.12.1")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0")
-
-
     testImplementation("io.mockk:mockk:1.10.6")
     androidTestImplementation("io.mockk:mockk:1.10.6")
-
     androidTestImplementation("androidx.test:core-ktx:1.4.0")
 
     //netWork
